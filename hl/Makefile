@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hl
-PKG_VERSION:=0.25.1
+PKG_VERSION:=0.29.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/pamburus/hl/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=972dc10ce0f732fcfa258731fed59f60cf9027ef37515baf712dc42413d37403
+PKG_HASH:=d3d1122bbeb5924ade5d0513b95963dfb80901225d4b60e41a43dbf84eb3d804
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/hl
   SECTION:=utils

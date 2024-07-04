@@ -1,11 +1,20 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -105,3 +105,8 @@ harness = false
- [[bench]]
- name = "json"
+@@ -35,7 +35,7 @@ bitmask = "0"
+ bitmask-enum = "2"
+ bytefmt = "0"
+ capnp = "0.19"
+-chrono = { version = "0.4", default-features = false, features = [
++chrono = { version = "0.4.38", default-features = false, features = [
+     "clock",
+     "serde",
+     "std",
+@@ -143,3 +143,8 @@ harness = false
+ name = "encstr"
+ path = "benches/encstr/benches.rs"
  harness = false
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.31" }
-+iana-time-zone = { path = "../iana-time-zone-0.1.59" }
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
