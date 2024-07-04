@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=taskwarrior-tui
 PKG_VERSION:=0.25.4
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/kdheepak/taskwarrior-tui/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -29,7 +29,8 @@ define Package/taskwarrior-tui
 endef
 
 define Package/taskwarrior-tui/description
-  A Terminal User Interface (TUI) for Taskwarrior that you didn't know you wanted.
+  A Terminal User Interface (TUI) for Taskwarrior that you didn't
+  know you wanted.
 endef
 
 define Package/taskwarrior-tui/install

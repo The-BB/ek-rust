@@ -1,5 +1,14 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
+@@ -16,7 +16,7 @@ categories = ["command-line-utilities"]
+ anyhow = "1.0.75"
+ better-panic = "0.3.0"
+ cassowary = "0.3.0"
+-chrono = "0.4.26"
++chrono = "0.4.31"
+ clap = { version = "4.4.1", features = ["derive"] }
+ crossterm = { version = "0.27.0", features = [
+   "event-stream",
 @@ -63,3 +63,8 @@ lto = "off"
  clap = { version = "4.4.1", features = ["derive"] }
  clap_complete = "4.4.0"
