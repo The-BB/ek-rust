@@ -3,20 +3,18 @@
 # Copyright (C) 2024 Entware
 
 # mips(el):
-#	error: failed to run custom build command for `ring v0.16.20`
-# armv5/mips(el):
 #	error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
 #	error: could not compile `sqlx-core` (lib) due to previous error
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=atuin
-PKG_VERSION:=18.0.1
+PKG_VERSION:=18.2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ellie/atuin/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=f9e4af24a78678d9d4283912561977aae7caf10b8dbcb3a468a09efa2ffcc1a3
+PKG_HASH:=7fb87902ce09af2d29459e9158bc83c18519690d555259709cab40d9ee75b024
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -25,7 +23,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += reqwest-01121 ring-0175 rusty-paserk-030 rusty-paseto-060 sqlx-073
+PKG_BUILD_DEPENDS += chrono-0437 sqlx-073
 
 define Package/atuin
   SECTION:=utils
@@ -39,15 +37,9 @@ define Package/atuin/description
   Magical shell history.
 endef
 
-# FIXME
-# i386/x86_64:
-#	undefined reference to `__stack_chk_guard'
-ifeq ($(or $(CONFIG_i386),$(CONFIG_x86_64)),y)
+# x86_64: undefined reference to `__stack_chk_guard'
+ifeq ($(CONFIG_x86_64),y)
 RUSTFLAGS += $(if $(CONFIG_GCC_LIBSSP),-l dylib=ssp)
-endif
-
-ifeq ($(or $(CONFIG_aarch64),$(CONFIG_i386),$(CONFIG_x86_64)),)
-RUSTFLAGS += --cfg crossbeam_no_atomic_64
 endif
 
 define Package/atuin/install
