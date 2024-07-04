@@ -27,7 +27,8 @@ define Package/pastel
 endef
 
 define Package/pastel/description
-  A command-line tool to generate, analyze, convert and manipulate colors.
+  A command-line tool to generate, analyze, convert and manipulate
+  colors.
 endef
 
 define Package/pastel/install
