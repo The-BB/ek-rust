@@ -1,0 +1,8 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -11,3 +11,5 @@ members = [
+   "vendor/pty",
+   "vendor/vt100",
+ ]
++
++resolver = "2"
