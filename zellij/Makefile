@@ -9,20 +9,20 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zellij
-PKG_VERSION:=0.39.2
+PKG_VERSION:=0.40.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/zellij-org/zellij/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=feef552f06898fe06df00f9a590b862607266c087e804fffb638d2c46d9edad1
+PKG_HASH:=afb15afce6e37f850aff28a3a6b08abd78ef26a1c9fa3ed39426ef0853154438
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE.md
 
-RUST_MIN_SIZE:=0
-
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
+
+PKG_BUILD_DEPENDS += chrono-0431
 
 define Package/zellij
   SECTION:=utils
@@ -30,7 +30,7 @@ define Package/zellij
   SUBMENU:=Terminal
   TITLE:=A terminal workspace with batteries included
   URL:=https://zellij.dev
-  DEPENDS:=@ARCH_64BIT +libopenssl +zlib
+  DEPENDS:=@ARCH_64BIT +libcurl +libopenssl +zlib
 endef
 
 define Package/zellij/description
@@ -41,8 +41,7 @@ define Package/zellij/conffiles
 /opt/etc/zellij/config.kdl
 endef
 
-# FIXME
-#	error: failed to run custom build command for `openssl-sys v0.9.98`
+# error: failed to run custom build command for `openssl-sys v0.9.98`
 RUSTC_VARS += OPENSSL_NO_VENDOR=1
 
 define Package/zellij/install
