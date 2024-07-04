@@ -1,0 +1,28 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -10,7 +10,7 @@ description = "Rust implementation of GN
+ authors = ["uutils developers"]
+ 
+ [dependencies]
+-chrono = "0.4.37"
++chrono = "=0.4.37"
+ clap = "4.5"
+ faccess = "0.2.4"
+ walkdir = "2.5"
+@@ -22,6 +22,7 @@ uucore = { version = "0.0.25", features
+ [dev-dependencies]
+ assert_cmd = "2"
+ filetime = "0.2"
++iana-time-zone = "0.1.60"
+ nix = { version = "0.28", features = ["fs"] }
+ predicates = "3"
+ serial_test = "3.0"
+@@ -57,3 +58,8 @@ installers = []
+ targets = ["aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-unknown-linux-gnu", "x86_64-pc-windows-msvc"]
+ # Publish jobs to run in CI
+ pr-run-mode = "plan"
++
++[patch.crates-io]
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.37" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
