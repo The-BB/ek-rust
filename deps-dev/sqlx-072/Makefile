@@ -2,13 +2,13 @@
 #
 # Copyright (C) 2024 Entware
 
-# XXX armv5/mips(el) (rustdesk-server)
+# XXX mips(el) (rustdesk-server)
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sqlx
 PKG_VERSION:=0.7.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-09-27
@@ -22,7 +22,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 include $(INCLUDE_DIR)/package.mk
 include ../../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431 rustls-0219 webpki-roots-0243
+PKG_BUILD_DEPENDS += chrono-0431
 
 define Package/sqlx-$(PKG_VERSION)
   SECTION:=devel
