@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rs-tftpd
-PKG_VERSION:=0.2.10
+PKG_VERSION:=0.2.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/altugbakan/rs-tftpd/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=5c97cf7bf5bfc0145b6c27c383b60482fe9f251a9d26114c8e35361dd0d8acde
+PKG_HASH:=d8010090aa0bf3ca5962d6c4fd6458f192bf78bff49c297709f88cbb4f7456d5
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE.md
@@ -28,7 +28,8 @@ define Package/rs-tftpd
 endef
 
 define Package/rs-tftpd/description
-  Pure Rust implementation of a Trivial File Transfer Protocol server daemon.
+  Pure Rust implementation of a Trivial File Transfer Protocol server
+  daemon.
 endef
 
 define Package/rs-tftpd/install
