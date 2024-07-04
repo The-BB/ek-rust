@@ -2,7 +2,7 @@
 #
 # Copyright (C) 2024 Entware
 
-# XXX armv5/mips(el) (rustdesk-server)
+# XXX mips(el) (rustdesk-server)
 
 include $(TOPDIR)/rules.mk
 
