@@ -35,7 +35,6 @@ define Package/sys-metrics-$(PKG_VERSION)/description
   Cross-platform library to gather stats/information from the host.
 endef
 
-# FIXME b1-b1-b1 )))
 ifeq ($(or $(CONFIG_aarch64),$(CONFIG_arm)),y)
   define Build/Prepare
 	$(Build/Prepare/Default)
