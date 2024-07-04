@@ -2,14 +2,11 @@
 #
 # Copyright (C) 2024 Entware
 
-# armv7-2.6:
-#	(crashed) src/widgets/procs.rs, line 210
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=yvers
 PKG_VERSION:=0.0.5
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-06-12
@@ -31,13 +28,12 @@ define Package/yvers
   CATEGORY:=Administration
   TITLE:=An extensible TUI system monitor
   URL:=https://github.com/TokieSan/yvers
-  DEPENDS:=@!TARGET_armv7_2_6
 endef
 
 define Package/yvers/description
   Yvers is a new extensible TUI system monitor and a Linux Process
-  Manager based on ytop with numerous improvements and the addition
-  of the capability to dynamically add widgets created by the community.
+  Manager based on ytop with numerous improvements and the addition of the
+  capability to dynamically add widgets created by the community.
 endef
 
 define Package/yvers/install
