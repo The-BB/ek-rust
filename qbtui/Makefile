@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qbtui
 PKG_VERSION:=0.0.5
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-05-31
@@ -28,7 +28,6 @@ define Package/qbtui
   TITLE:=A terminal user interface for qBittorrent
   URL:=https://github.com/pegov/qbtui
   DEPENDS:=+libopenssl
-  EXTRA_DEPENDS:=qbittorrent
 endef
 
 define Package/qbtui/description
