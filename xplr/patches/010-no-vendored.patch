@@ -3,7 +3,7 @@
 @@ -73,7 +73,7 @@ features = ['serde']
  
  [dependencies.mlua]
- version = "0.9.2"
+ version = "0.9.6"
 -features = ['luajit', 'vendored', 'serialize', 'send']
 +features = ['luajit', 'serialize', 'send']
  

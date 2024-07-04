@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xplr
-PKG_VERSION:=0.21.5
+PKG_VERSION:=0.21.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/sayanarijit/xplr/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=c6e2b800888363c6d6101eafe585723a5bf9cc304cedff77a302c0e2a6d0a151
+PKG_HASH:=d38f94cc46044dac3cfc96d89dec81989b69a66a98c2f960ea3abe44313675a6
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431 ratatui-0250
+PKG_BUILD_DEPENDS += chrono-0435
 
 define Package/xplr
   SECTION:=utils
