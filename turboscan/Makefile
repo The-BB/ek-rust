@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=turboscan
 PKG_VERSION:=0.1.4
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-06-10
@@ -29,8 +29,8 @@ define Package/turboscan
 endef
 
 define Package/turboscan/description
-  Turboscan is a blazingly fast and reliable Rust-based port scanner CLI
-  for network administrators, security professionals and Developers.
+  Turboscan is a blazingly fast and reliable Rust-based port scanner
+  CLI for network administrators, security professionals and Developers.
 endef
 
 define Package/turboscan/install
