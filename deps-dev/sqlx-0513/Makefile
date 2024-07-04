@@ -2,13 +2,13 @@
 #
 # Copyright (C) 2024 Entware
 
-# XXX armv5/mips(el) (gobang)
+# XXX mips(el) (gobang)
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sqlx
 PKG_VERSION:=0.5.13
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2022-04-15
@@ -22,7 +22,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 include $(INCLUDE_DIR)/package.mk
 include ../../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431 rustls-0219 webpki-0224 webpki-roots-0243
+PKG_BUILD_DEPENDS += chrono-0431
 
 define Package/sqlx-$(PKG_VERSION)
   SECTION:=devel
@@ -39,7 +39,12 @@ define Package/sqlx-$(PKG_VERSION)/description
   queries without a DSL. Supports PostgreSQL, MySQL, and SQLite.
 endef
 
+# XXX uncomment for testing
 #CARGO_ARGS += --features runtime-actix-native-tls
+
+#ifneq ($(CONFIG_ARCH_64BIT),y)
+#RUSTFLAGS += --cfg crossbeam_no_atomic_64
+#endif
 
 Build/Compile:=:
 MoveLibs:=:
