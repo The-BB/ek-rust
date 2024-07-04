@@ -1,6 +1,14 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -35,22 +35,26 @@ strum_macros = "0.24.3"
+@@ -12,6 +12,7 @@ categories = ["command-line-utilities"]
+ exclude = [".github"]
+ 
+ [dependencies]
++chrono = "0.4.31"
+ clap = { version = "4.0.22", features = ["derive", "wrap_help"] }
+ colored = "2.0.0"
+ itertools = "0.10.5"
+@@ -35,22 +36,26 @@ strum_macros = "0.24.3"
  [patch.crates-io]
  libudev-sys = { git = "https://github.com/Emilgardis/libudev-sys/", branch = "fix-cross-compilation" }
  rusb = { git = "https://github.com/a1ien/rusb.git" }
@@ -21,13 +29,14 @@
 -[target.arm-unknown-linux-gnueabihf.dependencies]
 -udev = { version = "^0.8.0", optional = true }
 -rusb = "0.9.1"
-+#[target.arm-unknown-linux-gnueabihf.dependencies]
-+#udev = { version = "^0.8.0", optional = true }
-+#rusb = "0.9.1"
- 
+-
 -[target.aarch64-unknown-linux-gnu.dependencies]
 -udev = { version = "^0.8.0", optional = true }
 -rusb = "0.9.1"
++#[target.arm-unknown-linux-gnueabihf.dependencies]
++#udev = { version = "^0.8.0", optional = true }
++#rusb = "0.9.1"
++
 +#[target.aarch64-unknown-linux-gnu.dependencies]
 +#udev = { version = "^0.8.0", optional = true }
 +#rusb = "0.9.1"
