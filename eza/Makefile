@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eza
-PKG_VERSION:=0.18.2
+PKG_VERSION:=0.18.16
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/eza-community/eza/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=d2fcde456b04c8aebe72fcd9a3f73feca58dc5de1f1edf40de9387c211dbba8a
+PKG_HASH:=dd713474b902568cb2c7c8ea7db8e08db5818617e34908ae7142e9da9cefd17b
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0434
 
 define Package/eza
   SECTION:=utils
