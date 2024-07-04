@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zenith
 PKG_VERSION:=0.14.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/bvaisvil/zenith/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -15,17 +15,15 @@ PKG_HASH:=2cbcea2625cfa97c161b974ad412a47e330f7fd31bec0479e329ed3606cfc569
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
-RUST_MIN_SIZE:=0
-
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431 raw-cpuid-911
+PKG_BUILD_DEPENDS += chrono-0431
 
 define Package/zenith
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=sort of like top or htop
+  SECTION:=admin
+  CATEGORY:=Administration
+  TITLE:=soft of like top or htop
   URL:=https://github.com/bvaisvil/zenith
 endef
 
@@ -33,7 +31,7 @@ define Package/zenith/description
   In terminal graphical metrics for your *nix system written in Rust.
 endef
 
-ifeq ($(or $(CONFIG_aarch64),$(CONFIG_i386),$(CONFIG_x86_64)),)
+ifneq ($(CONFIG_ARCH_64BIT),y)
 RUSTFLAGS += --cfg crossbeam_no_atomic_64
 endif
 
