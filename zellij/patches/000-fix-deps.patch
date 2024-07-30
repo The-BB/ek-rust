@@ -12,7 +12,7 @@
 --- a/zellij-server/Cargo.toml
 +++ b/zellij-server/Cargo.toml
 @@ -24,7 +24,7 @@ cassowary = "0.3.0"
- zellij-utils = { path = "../zellij-utils/", version = "0.40.0" }
+ zellij-utils = { path = "../zellij-utils/", version = "0.40.1" }
  log = "0.4.17"
  typetag = "0.1.7"
 -chrono = "0.4.19"
