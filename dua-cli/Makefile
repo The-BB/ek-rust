@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0434
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/dua-cli
   SECTION:=utils
