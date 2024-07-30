@@ -1,0 +1,22 @@
+--- a/rust/libnewsboat/Cargo.toml
++++ b/rust/libnewsboat/Cargo.toml
+@@ -19,7 +19,7 @@ libc = "0.2"
+ natord = "1.0.9"
+ md5 = "0.7.0"
+ lexopt = "0.3.0"
+-chrono = "0.4.34"
++chrono = "=0.4.38"
+ 
+ [dependencies.gettext-rs]
+ version = "0.7.0"
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -6,3 +6,8 @@ members = [
+     "rust/regex-rs",
+ ]
+ resolver = "2"
++
++[patch.crates-io]
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
