@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shadowsocks-rust
-PKG_VERSION:=1.18.3
+PKG_VERSION:=1.20.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/shadowsocks/shadowsocks-rust/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=0eb817d81e6827e65593c67d4eef6a1136ca84a1c33cf4c97b3a84e98e5a7f60
+PKG_HASH:=555f0680621d6ebe19eb6b91356068ca7afabf5ef502bbe2a85d779af03e45b9
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -31,6 +31,7 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_SS_RUST_LOCAL_HTTP \
 	CONFIG_SS_RUST_LOCAL_HTTP_NATIVE_TLS \
 	CONFIG_SS_RUST_LOCAL_HTTP_RUSTLS \
+	CONFIG_SS_RUST_LOCAL_ONLINE_CONFIG \
 	CONFIG_SS_RUST_LOCAL_REDIR \
 	CONFIG_SS_RUST_LOCAL_SOCKS4 \
 	CONFIG_SS_RUST_LOCAL_TUN \
@@ -48,7 +49,7 @@ PKG_CONFIG_DEPENDS:= \
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0437 quinn-0104
+PKG_BUILD_DEPENDS += chrono-0438 quinn-0104
 
 define Package/shadowsocks-rust
   SECTION:=net
@@ -98,6 +99,7 @@ FEATURES:= \
 	$(if $(CONFIG_SS_RUST_LOCAL_FAKE_DNS),local-fake-dns) \
 	$(if $(CONFIG_SS_RUST_LOCAL_HTTP_NATIVE_TLS),local-http-native-tls) \
 	$(if $(CONFIG_SS_RUST_LOCAL_HTTP_RUSTLS),local-http-rustls) \
+	$(if $(CONFIG_SS_RUST_LOCAL_ONLINE_CONFIG),local-online-config) \
 	$(if $(CONFIG_SS_RUST_LOCAL_REDIR),local-redir) \
 	$(if $(CONFIG_SS_RUST_LOCAL_TUN),local-tun) \
 	$(if $(CONFIG_SS_RUST_SECURITY_REPLAY_ATTACK_DETECT),security-replay-attack-detect) \

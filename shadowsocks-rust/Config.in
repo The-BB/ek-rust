@@ -102,6 +102,10 @@ comment "Optional features"
 
 #endchoice
 
+	config SS_RUST_LOCAL_ONLINE_CONFIG
+		bool "Enable sslocal support online URL (SIP008 Online Configuration Delivery)"
+		depends on SS_RUST_LOCAL && SS_RUST_LOCAL_HTTP
+
 	config SS_RUST_LOCAL_REDIR
 		bool "Enable REDIR protocol for sslocal"
 		depends on SS_RUST_LOCAL
