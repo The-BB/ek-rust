@@ -31,15 +31,14 @@ define Package/digs/description
 endef
 
 define Package/digs/conffiles
-/opt/usr/share/digs.toml
+/opt/etc/digs.toml
 endef
 
 define Package/digs/install
+	$(INSTALL_DIR) $(1)/opt/etc
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/tests/fixture/digs.toml $(1)/opt/etc
 	$(INSTALL_DIR) $(1)/opt/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/digs $(1)/opt/usr/bin
-	$(INSTALL_DIR) $(1)/opt/usr/share
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/tests/fixture/digs.toml \
-		$(1)/opt/usr/share/digs.toml
 endef
 
 $(eval $(call BuildPackage,digs))

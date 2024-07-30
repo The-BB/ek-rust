@@ -5,7 +5,7 @@
  
      /// Specify an alternate configuration file
 -    #[arg(short, long, default_value_os_t = PathBuf::from("digs.toml"))]
-+    #[arg(short, long, default_value_os_t = PathBuf::from("/opt/usr/share/digs.toml"))]
++    #[arg(short, long, default_value_os_t = PathBuf::from("/opt/etc/digs.toml"))]
      pub config: PathBuf,
  }
  
