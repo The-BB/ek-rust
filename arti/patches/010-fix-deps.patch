@@ -20,12 +20,12 @@
 --- a/crates/tor-linkspec/Cargo.toml
 +++ b/crates/tor-linkspec/Cargo.toml
 @@ -50,6 +50,7 @@ tor-llcrypto = { path = "../tor-llcrypto
- tor-protover = { path = "../tor-protover", version = "0.18.0" }
+ tor-protover = { path = "../tor-protover", version = "0.20.0" }
  
  [dev-dependencies]
 +chrono = "0.4.38"
  hex-literal = "0.4"
- itertools = "0.12.0"
+ itertools = "0.13.0"
  serde_test = "1.0.124"
 --- a/crates/tor-netdoc/Cargo.toml
 +++ b/crates/tor-netdoc/Cargo.toml
@@ -35,7 +35,7 @@
  anyhow = "1.0.23"
 +chrono = "0.4.38"
  hex-literal = "0.4"
- itertools = "0.12.0"
+ itertools = "0.13.0"
  serde_json = "1.0.50"
 --- a/crates/tor-proto/Cargo.toml
 +++ b/crates/tor-proto/Cargo.toml
