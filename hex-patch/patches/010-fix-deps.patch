@@ -1,0 +1,29 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -36,9 +36,25 @@ ratatui = { version = "0.27", features =
+ regex = "1.10"
+ russh = "0.44"
+ russh-keys = "0.44"
+-russh-sftp = "2.0"
++russh-sftp = "=2.0.3"
+ serde = { version = "1.0", features = ["derive"] }
+ serde_json = "1.0"
+ symbolic-demangle = "12.9"
+ tempfile = "3.10"
+ tokio = "1.38"
++
++[dev-dependencies]
++# mips/mipsel: error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
++flurry = "=0.5.1"
++seize = "=0.3.3"
++# localtime/zoneinfo
++chrono = "=0.4.38"
++
++[patch.crates-io]
++# mips/mipsel: error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
++flurry = { path = "../flurry-0.5.1" }
++russh-sftp = { path = "../russh-sftp-2.0.3" }
++seize = { path = "../seize-0.3.3" }
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
