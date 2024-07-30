@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0437
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/mqttui
   SECTION:=utils
