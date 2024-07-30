@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wstunnel
-PKG_VERSION:=9.7.2
+PKG_VERSION:=9.7.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/erebe/wstunnel/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=9493d4e08dea82b7ed07db800c5e7438ac3410cf1add4d18955cd46dbb0f87ce
+PKG_HASH:=b18e01f34036073ae0e6f68053cf5f131dbb781932e8566dc63efbed0732b335
 
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
