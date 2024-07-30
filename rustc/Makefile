@@ -162,21 +162,22 @@ define Package/rustc/postinst
 
 /opt/sbin/ldconfig > /dev/null 2>&1
 
-if ! grep -q "TMPDIR" /opt/etc/profile; then
-  echo -e "\n# set env TMPDIR for cargo/rustc" >> /opt/etc/profile
-  echo 'export TMPDIR="/opt/tmp"' >> /opt/etc/profile
-fi
-
 if ! grep -q "CARGO_HOME" /opt/etc/profile; then
-  echo -e "\n# set env CARGO_HOME for cargo/rustc" >> /opt/etc/profile
+  echo -e "\n# set env CARGO_HOME" >> /opt/etc/profile
   echo 'export CARGO_HOME="/opt/share/cargo"' >> /opt/etc/profile
 fi
+
+if ! grep -q "TMPDIR" /opt/etc/profile; then
+  echo -e "\n# set env TMPDIR" >> /opt/etc/profile
+  echo 'export TMPDIR="/opt/tmp"' >> /opt/etc/profile
+fi
 endef
 
-define Package/rustc/postrm
-#!/bin/sh
-
-sed -i '/CARGO_HOME/d' /opt/etc/profile
-endef
+#define Package/rustc/postrm
+##!/bin/sh
+#
+#sed -i '/CARGO_HOME/d' /opt/etc/profile
+#sed -i '/TMPDIR/d' /opt/etc/profile
+#endef
 
 $(eval $(call BuildPackage,rustc))
