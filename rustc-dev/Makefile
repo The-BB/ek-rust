@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.79.0
+PKG_VERSION:=1.80.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=172ecf3c7d1f9d9fb16cd2a628869782670416ded0129e524a86751f961448c0
+PKG_HASH:=6f606c193f230f6b2cae4576f7b24d50f5f9b25dff11dbf9b22f787d3521d672
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-dev-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-dev-$(PKG_VERSION)
@@ -57,7 +57,7 @@ endif
 
 define Host/Configure
 	( \
-		echo 'change-id = 126219'; \
+		echo 'change-id = 128032'; \
 		echo '[llvm]'; \
 		echo 'targets = "AArch64;ARM;Mips;X86"'; \
 		echo 'experimental-targets = ""'; \
@@ -130,7 +130,7 @@ endef
 
 define Build/Configure
 	( \
-		echo 'change-id = 126219'; \
+		echo 'change-id = 128032'; \
 		echo 'profile = "library"'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = false'; \

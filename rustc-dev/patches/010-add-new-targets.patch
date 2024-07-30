@@ -57,7 +57,7 @@
 +            std: None,
 +        },
 +        pointer_width: 64,
-+        data_layout: "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128".into(),
++        data_layout: "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128-Fn32".into(),
 +        arch: "aarch64".into(),
 +        options: TargetOptions {
 +            features: "+v8a".into(),
@@ -261,7 +261,7 @@
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/x86_64_openwrt_linux_gnu.rs
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,42 @@
 +use crate::spec::{base, Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target};
 +
 +pub fn target() -> Target {
@@ -282,6 +282,13 @@
 +        | SanitizerSet::THREAD;
 +    base.supports_xray = true;
 +
++    // When we're asked to use the `rust-lld` linker by default, set the appropriate lld-using
++    // linker flavor, and self-contained linker component.
++    if option_env!("CFG_USE_SELF_CONTAINED_LINKER").is_some() {
++        base.linker_flavor = LinkerFlavor::Gnu(Cc::Yes, Lld::Yes);
++        base.link_self_contained = crate::spec::LinkSelfContainedDefault::with_linker();
++    }
++
 +    Target {
 +        llvm_target: "x86_64-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
@@ -299,7 +306,7 @@
 +}
 --- a/compiler/rustc_target/src/spec/mod.rs
 +++ b/compiler/rustc_target/src/spec/mod.rs
-@@ -1488,6 +1488,16 @@ macro_rules! supported_targets {
+@@ -1524,6 +1524,16 @@ macro_rules! supported_targets {
  }
  
  supported_targets! {
