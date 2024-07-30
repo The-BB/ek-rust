@@ -1,20 +1,20 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -63,7 +63,7 @@ anyhow = "1.0"
+@@ -65,7 +65,7 @@ anyhow = "1.0"
  async-compression = { version = "0.4", default-features = false, optional = true, features = ["brotli", "deflate", "gzip", "zstd", "tokio"] }
  bcrypt = { version = "0.15", optional = true }
- bytes = "1.5"
+ bytes = "1.6"
 -chrono = { version = "0.4", default-features = false, features = ["std", "clock"], optional = true }
-+chrono = { version = "=0.4.37", default-features = false, features = ["std", "clock"], optional = true }
++chrono = { version = "=0.4.38", default-features = false, features = ["std", "clock"], optional = true }
  clap = { version = "4.5", features = ["derive", "env"] }
  form_urlencoded = "1.2"
  futures-util = { version = "0.3", default-features = false }
-@@ -138,3 +138,8 @@ pre-build = [
-     "rm base.tar.xz",
-     "rm -rf /tmp/netbsd",
- ]
+@@ -144,3 +144,8 @@ pre-build = [
+ # - https://github.com/static-web-server/static-web-server/issues/440
+ # - https://github.com/jemalloc/jemalloc/issues/467
+ passthrough = ["JEMALLOC_SYS_WITH_LG_PAGE=16"]
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.37" }
++chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.60" }

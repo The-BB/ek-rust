@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=static-web-server
-PKG_VERSION:=2.30.0
+PKG_VERSION:=2.32.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/joseluisq/static-web-server/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=c141d2d9db0d2bc0718bf860558aab0afc2dca0dc0cdedb70f8e01fcb3f867b8
+PKG_HASH:=0ba853ded8ee63f4714be0ac3aee4ca5c7f97596a18a4f2c3ea0ede373f0e76e
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0437
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/static-web-server
   SECTION:=net
