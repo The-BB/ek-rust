@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hl
-PKG_VERSION:=0.29.4
+PKG_VERSION:=0.29.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/pamburus/hl/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=d3d1122bbeb5924ade5d0513b95963dfb80901225d4b60e41a43dbf84eb3d804
+PKG_HASH:=74a3e889da38691ac6097d9c0daf52e4297581e6328a6aa76db655123de096fe
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -29,7 +29,8 @@ define Package/hl
 endef
 
 define Package/hl/description
-  Log viewer which translates JSON logs into pretty human-readable representation.
+  Log viewer which translates JSON logs into pretty human-readable
+  representation.
 endef
 
 define Package/hl/install
