@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=spider
-PKG_VERSION:=1.98.7
+PKG_VERSION:=1.99.10
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/spider-rs/spider/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=13fd774d66259df60bb5c8b31029bf2ced02ded81737a1ecad04fbdb81cca51b
+PKG_HASH:=40446db898f14d88ba9deb8b3b5bd2559c900bd43c2d1f1b63d7bd3c1a9a31ec
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
