@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-periodic-table
 PKG_VERSION:=0.2.7
-PKG_RELEASE:=4
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2023-11-27
