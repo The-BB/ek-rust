@@ -54,10 +54,10 @@
          self.update_gpu_utilization();
 --- a/src/renderer/title.rs
 +++ b/src/renderer/title.rs
-@@ -6,9 +6,9 @@ use crate::metrics::*;
- use chrono::prelude::DateTime;
- use chrono::Duration as CDuration;
- use chrono::{Datelike, Local, Timelike};
+@@ -11,9 +11,9 @@ use ratatui::style::{Color, Modifier, St
+ use ratatui::text::{Line, Span};
+ use ratatui::widgets::Paragraph;
+ use ratatui::Frame;
 -use starship_battery::units::power::watt;
 -use starship_battery::units::ratio::percent;
 -use starship_battery::units::time::second;
@@ -66,8 +66,8 @@
 +//use starship_battery::units::time::second;
  use std::ops::Mul;
  use std::time::Duration;
- use tui::layout::Rect;
-@@ -43,75 +43,75 @@ fn display_time(start: DateTime<Local>,
+ use unicode_width::UnicodeWidthStr;
+@@ -43,74 +43,74 @@ fn display_time(start: DateTime<Local>,
      )
  }
  
@@ -83,7 +83,6 @@
 -            starship_battery::State::Discharging => "🁢",
 -            starship_battery::State::Empty => "🁢",
 -            starship_battery::State::Full => "🁢",
--            _ => "",
 -        };
 -        let charge_state_color = match b.state() {
 -            starship_battery::State::Charging => Color::Green,
@@ -152,7 +151,6 @@
 +//            starship_battery::State::Discharging => "🁢",
 +//            starship_battery::State::Empty => "🁢",
 +//            starship_battery::State::Full => "🁢",
-+//            _ => "",
 +//        };
 +//        let charge_state_color = match b.state() {
 +//            starship_battery::State::Charging => Color::Green,
@@ -212,7 +210,7 @@
  
  pub fn render_top_title_bar(
      app: &CPUTimeApp,
-@@ -152,9 +152,9 @@ pub fn render_top_title_bar(
+@@ -151,9 +151,9 @@ pub fn render_top_title_bar(
      } else {
          String::from("")
      };
@@ -225,7 +223,7 @@
      let not_recording_warning = if app.writes_db_store() {
          ""
      } else {
-@@ -171,12 +171,12 @@ pub fn render_top_title_bar(
+@@ -170,12 +170,12 @@ pub fn render_top_title_bar(
              default_style,
          ),
          Span::styled(uptime, default_style),

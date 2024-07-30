@@ -2,23 +2,21 @@
 +++ b/Cargo.toml
 @@ -24,7 +24,7 @@ num-traits = "0.2"
  heim = {git = "https://github.com/bvaisvil/heim.git", branch="zenith_changes", features = ["full"]}
- futures = "0.3.21"
+ futures = "0.3.28"
  gumdrop = { version = "~0.8.1", features = ["default_expr"] }
--chrono = "~0.4.22"
-+chrono = "0.4.31"
+-chrono = "~0.4.31"
++chrono = "=0.4.31"
  sysinfo = {git = "https://github.com/bvaisvil/sysinfo.git", branch="zenith_changes_15.1"}
  dirs-next = "2.0.0"
- serde = { version = "~1.0.147", features = ["derive"] }
-@@ -38,5 +38,14 @@ env_logger = { version = "~0.10.0", defa
+ serde = { version = "~1.0.189", features = ["derive"] }
+@@ -38,5 +38,12 @@ env_logger = { version = "~0.10.0", defa
  libc = "0.2"
- nvml-wrapper = { version = "0.8.0", optional = true }
- unicode-width = "0.1.9"
-+
-+# error[E0635]: unknown feature `proc_macro_span_shrink`
-+proc-macro2 = "1.0.57"
+ nvml-wrapper = { version = "0.9.0", optional = true }
+ unicode-width = "0.1.11"
++iana-time-zone = "=0.1.59"
 +
  [target.'cfg(target_os = "linux")'.dependencies]
- linux-taskstats = { version = "0.2.0", default-features = false }
+ linux-taskstats = { version = "0.5.0", default-features = false }
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
