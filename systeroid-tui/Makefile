@@ -43,7 +43,7 @@ define Package/systeroid/description
   A more powerful alternative to sysctl.
 endef
 
-# clipboard support is enabled as default
+# clipboard support is enabled by default
 CARGO_ARGS += --no-default-features
 
 # XXX docs
