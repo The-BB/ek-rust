@@ -1,0 +1,11 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -23,3 +23,8 @@ install-updater = false
+ [profile.dist]
+ inherits = "release"
+ lto = "thin"
++
++[patch.crates-io]
++# localtime/TZ
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
