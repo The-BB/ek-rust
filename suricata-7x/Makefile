@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=suricata
-PKG_VERSION:=7.0.5
+PKG_VERSION:=7.0.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.openinfosecfoundation.org/download
-PKG_HASH:=1ffb568158f265c08554464bfb854e6568ef683bf03312923b51f28c50790a4e
+PKG_HASH:=21824f7ff12087c0c9b9de207199a75a9c31b03036688c7cb9c178f0a3b57f8d
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING LICENSE
@@ -97,7 +97,7 @@ TARGET_LDFLAGS += -latomic
 CONFIGURE_ARGS += \
 	--disable-suricata-update \
 	--$(if $(CONFIG_SURICATA_$(BUILD_VARIANT)_PYTHON_SUPPORT),en,dis)able-python \
-	CARGO_HOME="$(STAGING_DIR)/host/share/cargo" \
+	CARGO_HOME="$(CARGO_HOME)" \
 	CARGO_BUILD_TARGET="$(RUSTC_TARGET_ARCH)"
 
 ifeq ($(BUILD_VARIANT),extra)
