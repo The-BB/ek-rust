@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=coreutils
-PKG_VERSION:=0.0.26
+PKG_VERSION:=0.0.27
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/uutils/coreutils/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=2a0e8511f1e6adf7f1003ce4536b8a8bb1b2289364efe55edf96f2fc9e2f00a4
+PKG_HASH:=3076543a373c8e727018bd547cc74133f4a6538849e4990388f2bbea9a9aff6b
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0437
+PKG_BUILD_DEPENDS += chrono-0438
 
 # XXX without:  chcon & runcon (depends on SELinux);
 #		stdbuf (fail to compile on several platforms).
@@ -75,6 +75,7 @@ define GenBins
  endef
 
  define Package/$(1)/description
+  $(2)
   uutils coreutils is a cross-platform reimplementation of the GNU coreutils
   in Rust. While all programs have been implemented, some options might be
   missing or different behavior might be experienced.
@@ -84,10 +85,10 @@ endef
 $(foreach b,$(COREUTILS_APPS),$(eval $(call GenBins,uutils-coreutils-$(b),$(b))))
 
 define Package/uutils-coreutils-apps/description
+  A multicall (BusyBox-type) binary.
   uutils coreutils is a cross-platform reimplementation of the GNU coreutils
   in Rust. While all programs have been implemented, some options might be
   missing or different behavior might be experienced.
-  (multicall)
 endef
 
 ifeq ($(BUILD_VARIANT),apps)
@@ -108,7 +109,8 @@ else
 	for bins in $(COREUTILS_APPS); do \
 		cd $(CARGO_BUILD_DIR) && \
 		$(RUSTC_VARS) RUSTFLAGS="$(RUSTFLAGS)" \
-		cargo build $(CARGO_ARGS) --release \
+		cargo build $(CARGO_ARGS) \
+		--profile $(CARGO_PKG_PROFILE) \
 		--manifest-path $(CARGO_BUILD_DIR)/Cargo.toml \
 		--out-dir $(CARGO_INSTALL_ROOT)/bin \
 		-p uu_$$$$bins; \
