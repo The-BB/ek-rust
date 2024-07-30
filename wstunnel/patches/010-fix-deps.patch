@@ -1,0 +1,19 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -66,6 +66,7 @@ tokio-fd = "0.3.0"
+ 
+ [dev-dependencies]
+ testcontainers = "0.17.0"
++chrono = "=0.4.38"
+ 
+ [profile.release]
+ lto = "fat"
+@@ -78,3 +79,8 @@ strip = "symbols"
+ [profile.release-with-symbols]
+ inherits = "release"
+ strip = false
++
++[patch.crates-io]
++# localtime/zoneinfo
++chrono = { path = "../chrono-0.4.38" }
++iana-time-zone = { path = "../iana-time-zone-0.1.60" }
