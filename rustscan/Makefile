@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustscan
-PKG_VERSION:=2.2.2
+PKG_VERSION:=2.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/RustScan/RustScan/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=bae70efb414b8d809571773b8ba0240c5d06fe1199ffb187510cfabff936ac75
+PKG_HASH:=94bec6a3e737963c084fd2e0853689cd0de06ece2588641fddbea7cf249bf414
 
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,6 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += trust-dns
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/rustscan
@@ -32,10 +31,6 @@ endef
 define Package/rustscan/description
   The Modern Port Scanner.
 endef
-
-ifneq ($(CONFIG_ARCH_64BIT),y)
-RUSTFLAGS += --cfg crossbeam_no_atomic_64
-endif
 
 # x86_64: undefined reference to `__stack_chk_guard'
 ifeq ($(CONFIG_x86_64),y)
