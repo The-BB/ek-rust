@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=termscp
-PKG_VERSION:=0.13.0
+PKG_VERSION:=0.14.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/veeso/termscp/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=26167374d619ced9fad84382dbdffbec861a36a20224b4ecdc955e732881e367
+PKG_HASH:=deb960c779fc4142f4d484a5f4557c8e8aaa03ea0533d760391f0e45d23e3e18
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/termscp
   SECTION:=net
@@ -30,8 +30,8 @@ define Package/termscp
 endef
 
 define Package/termscp/description
-  termscp is a feature rich terminal file transfer
-  and explorer with support for SCP/SFTP/FTP/S3.
+  termscp is a feature rich terminal file transfer and explorer with
+  support for SCP/SFTP/FTP/S3.
 endef
 
 # all: samba4-dev
