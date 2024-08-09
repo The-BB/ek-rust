@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xiu
 PKG_VERSION:=0.12.7
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/harlanc/xiu/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -27,7 +27,7 @@ define Package/xiu
   CATEGORY:=Multimedia
   TITLE:=A powerful live server by Rust
   URL:=https://www.rustxiu.com/
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl +libopus
 endef
 
 define Package/xiu/description

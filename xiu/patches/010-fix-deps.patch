@@ -86,6 +86,14 @@
  async-trait = "0.1.70"
  fdk-aac = "0.6.0"
  audiopus = "0.3.0-rc.0"
+@@ -26,3 +26,7 @@ bytesio = { path = "../../library/bytesi
+ streamhub = { path = "../../library/streamhub/" }
+ xflv = { path = "../../library/container/flv/" }
+ commonlib = { path = "../../library/common/" }
++
++[dev-dependencies]
++# error[E0282]: type annotations needed for `Box<_>`
++time = "0.3.36"
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -1,5 +1,5 @@
