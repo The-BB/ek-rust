@@ -9,8 +9,14 @@
  chrono-humanize = "0.2.2"
  ansi_colours = "1.2.1"
  ansi_term = "0.12.1"
-@@ -69,3 +69,8 @@ features = []
+@@ -67,5 +67,14 @@ version = "0.29.0"
+ default-features = false
+ features = []
  
++[dev-dependencies]
++# error[E0282]: type annotations needed for `Box<_>`
++time = "0.3.36"
++
  [profile.test]
  opt-level = 2
 +
