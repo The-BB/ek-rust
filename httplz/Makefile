@@ -2,6 +2,9 @@
 #
 # Copyright (C) 2024 Entware
 
+# mips(el):
+#	error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=http
@@ -24,13 +27,15 @@ define Package/httplz
   SUBMENU:=Web Servers/Proxies
   TITLE:=a basic http server for hosting a folder fast and simply
   URL:=https://github.com/thecoshman/http
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @!(mips||mipsel)
 endef
 
 define Package/httplz/description
   Host These Things Please - a basic HTTP server for hosting a folder
   fast and simply.
 endef
+
+RUSTC_VARS += RUSTC_BOOTSTRAP=1
 
 define Package/httplz/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
