@@ -9,7 +9,13 @@
  chrono-humanize = "0.2"
  clap = { version = "4", features = ["derive", "cargo", "wrap_help", "deprecated", "env"] }
  clap_complete = "4"
-@@ -82,3 +82,8 @@ url = "2"
+@@ -78,7 +78,14 @@ reqwest = { version = "0.11", features =
+ rstest = "0.18"
+ select = "0.6"
+ url = "2"
++# error[E0282]: type annotations needed for `Box<_>`
++time = "0.3.36"
+ 
  [target.'cfg(not(windows))'.dev-dependencies]
  # fake_tty does not support Windows for now
  fake-tty = "0.3.1"
