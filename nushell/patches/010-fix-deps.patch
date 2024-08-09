@@ -1,6 +1,16 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -290,6 +290,13 @@ bench = false
+@@ -190,7 +190,8 @@ miette = { workspace = true, features =
+ mimalloc = { version = "0.1.37", default-features = false, optional = true }
+ serde_json = { workspace = true }
+ simplelog = "0.12"
+-time = "0.3"
++# error[E0282]: type annotations needed for `Box<_>`
++time = "=0.3.36"
+ 
+ [target.'cfg(not(target_os = "windows"))'.dependencies]
+ # Our dependencies don't use OpenSSL on Windows
+@@ -290,6 +291,13 @@ bench = false
  
  # Run all benchmarks with `cargo bench`
  # Run individual benchmarks like `cargo bench -- <regex>` e.g. `cargo bench -- parse`
