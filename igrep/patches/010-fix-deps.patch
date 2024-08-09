@@ -1,0 +1,8 @@
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -32,3 +32,5 @@ syntect = "5.0.0"
+ lazy_static = "1.4.0"
+ test-case = "2.0.0"
+ mockall = "0.11.0"
++# error[E0282]: type annotations needed for `Box<_>`
++time = "0.3.36"
