@@ -1,11 +1,12 @@
 --- a/compiler/rustc_target/src/spec/base/mod.rs
 +++ b/compiler/rustc_target/src/spec/base/mod.rs
-@@ -21,6 +21,8 @@ pub(crate) mod msvc;
+@@ -21,6 +21,9 @@ pub(crate) mod msvc;
  pub(crate) mod netbsd;
  pub(crate) mod nto_qnx;
  pub(crate) mod openbsd;
 +pub(crate) mod openwrt_linux;
 +pub(crate) mod openwrt_linux_gnu;
++pub(crate) mod openwrt_linux_musl;
  pub(crate) mod redox;
  pub(crate) mod solaris;
  pub(crate) mod solid;
@@ -43,6 +44,25 @@
 +    TargetOptions { env: "gnu".into(), ..base::openwrt_linux::opts() }
 +}
 --- /dev/null
++++ b/compiler/rustc_target/src/spec/base/openwrt_linux_musl.rs
+@@ -0,0 +1,16 @@
++use crate::spec::crt_objects;
++use crate::spec::{base, LinkSelfContainedDefault, TargetOptions};
++
++pub fn opts() -> TargetOptions {
++    let mut base = base::openwrt_linux::opts();
++
++    base.env = "musl".into();
++    base.pre_link_objects_self_contained = crt_objects::pre_musl_self_contained();
++    base.post_link_objects_self_contained = crt_objects::post_musl_self_contained();
++    base.link_self_contained = LinkSelfContainedDefault::InferredForMusl;
++
++    // These targets statically link libc by default
++    base.crt_static_default = false;
++
++    base
++}
+--- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/aarch64_openwrt_linux_gnu.rs
 @@ -0,0 +1,32 @@
 +use crate::spec::{base, SanitizerSet, StackProbeType, Target, TargetOptions};
@@ -75,6 +95,37 @@
 +            supports_xray: true,
 +            ..base::openwrt_linux_gnu::opts()
 +        },
++    }
++}
+--- /dev/null
++++ b/compiler/rustc_target/src/spec/targets/aarch64_openwrt_linux_musl.rs
+@@ -0,0 +1,28 @@
++use crate::spec::{base, SanitizerSet, StackProbeType, Target, TargetOptions};
++
++pub fn target() -> Target {
++    let mut base = base::openwrt_linux_musl::opts();
++    base.max_atomic_width = Some(128);
++    base.supports_xray = true;
++    base.features = "+v8a".into();
++    base.stack_probes = StackProbeType::Inline;
++    base.supported_sanitizers = SanitizerSet::ADDRESS
++        | SanitizerSet::CFI
++        | SanitizerSet::LEAK
++        | SanitizerSet::MEMORY
++        | SanitizerSet::THREAD;
++
++    Target {
++        llvm_target: "aarch64-openwrt-linux-musl".into(),
++        metadata: crate::spec::TargetMetadata {
++            description: None,
++            tier: None,
++            host_tools: None,
++            std: None,
++        },
++        pointer_width: 64,
++        data_layout: "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128-Fn32".into(),
++        arch: "aarch64".into(),
++        options: TargetOptions { mcount: "\u{1}_mcount".into(), ..base },
 +    }
 +}
 --- /dev/null
@@ -232,6 +283,32 @@
 +    }
 +}
 --- /dev/null
++++ b/compiler/rustc_target/src/spec/targets/mips_openwrt_linux_musl.rs
+@@ -0,0 +1,23 @@
++use crate::abi::Endian;
++use crate::spec::{base, Target, TargetOptions};
++
++pub fn target() -> Target {
++    let mut base = base::openwrt_linux_musl::opts();
++    base.cpu = "mips32r2".into();
++    base.features = "+mips32r2,+soft-float".into();
++    base.max_atomic_width = Some(32);
++    base.crt_static_default = false;
++    Target {
++        llvm_target: "mips-openwrt-linux-musl".into(),
++        metadata: crate::spec::TargetMetadata {
++            description: None,
++            tier: None,
++            host_tools: None,
++            std: None,
++        },
++        pointer_width: 32,
++        data_layout: "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
++        arch: "mips".into(),
++        options: TargetOptions { endian: Endian::Big, mcount: "_mcount".into(), ..base },
++    }
++}
+--- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/mipsel_openwrt_linux_gnu.rs
 @@ -0,0 +1,25 @@
 +use crate::spec::{base, Target, TargetOptions};
@@ -257,6 +334,31 @@
 +
 +            ..base::openwrt_linux_gnu::opts()
 +        },
++    }
++}
+--- /dev/null
++++ b/compiler/rustc_target/src/spec/targets/mipsel_openwrt_linux_musl.rs
+@@ -0,0 +1,22 @@
++use crate::spec::{base, Target, TargetOptions};
++
++pub fn target() -> Target {
++    let mut base = base::openwrt_linux_musl::opts();
++    base.cpu = "mips32r2".into();
++    base.features = "+mips32r2,+soft-float".into();
++    base.max_atomic_width = Some(32);
++    base.crt_static_default = false;
++    Target {
++        llvm_target: "mipsel-openwrt-linux-musl".into(),
++        metadata: crate::spec::TargetMetadata {
++            description: None,
++            tier: None,
++            host_tools: None,
++            std: None,
++        },
++        pointer_width: 32,
++        data_layout: "e-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
++        arch: "mips".into(),
++        options: TargetOptions { mcount: "_mcount".into(), ..base },
 +    }
 +}
 --- /dev/null
@@ -306,7 +408,7 @@
 +}
 --- a/compiler/rustc_target/src/spec/mod.rs
 +++ b/compiler/rustc_target/src/spec/mod.rs
-@@ -1524,6 +1524,16 @@ macro_rules! supported_targets {
+@@ -1524,6 +1524,20 @@ macro_rules! supported_targets {
  }
  
  supported_targets! {
@@ -319,24 +421,31 @@
 +    ("mips-openwrt-linux-gnu", mips_openwrt_linux_gnu), // Entware/OpenWrt
 +    ("mipsel-openwrt-linux-gnu", mipsel_openwrt_linux_gnu), // Entware/OpenWrt
 +    ("x86_64-openwrt-linux-gnu", x86_64_openwrt_linux_gnu), // Entware/OpenWrt
++    // add *-openwrt-linux-musl
++    ("aarch64-openwrt-linux-musl", aarch64_openwrt_linux_musl), // Entware/OpenWrt
++    ("mips-openwrt-linux-musl", mips_openwrt_linux_musl), // Entware/OpenWrt
++    ("mipsel-openwrt-linux-musl", mipsel_openwrt_linux_musl), // Entware/OpenWrt
 +    //
      ("x86_64-unknown-linux-gnu", x86_64_unknown_linux_gnu),
      ("x86_64-unknown-linux-gnux32", x86_64_unknown_linux_gnux32),
      ("i686-unknown-linux-gnu", i686_unknown_linux_gnu),
 --- a/src/tools/build-manifest/src/main.rs
 +++ b/src/tools/build-manifest/src/main.rs
-@@ -49,6 +49,15 @@ static HOSTS: &[&str] = &[
+@@ -49,6 +49,18 @@ static HOSTS: &[&str] = &[
  ];
  
  static TARGETS: &[&str] = &[
 +    "aarch64-openwrt-linux-gnu", // Entware/OpenWrt
++    "aarch64-openwrt-linux-musl", // Entware/OpenWrt
 +    "arm-openwrt-linux-gnueabi", // Entware/OpenWrt
 +    "armv5te-openwrt-linux-gnueabi", // Entware/OpenWrt
 +    "armv7-openwrt-linux-gnueabi", // Entware/OpenWrt
 +    "i586-openwrt-linux-gnu", // Entware/OpenWrt
 +    "i686-openwrt-linux-gnu", // Entware/OpenWrt
 +    "mips-openwrt-linux-gnu", // Entware/OpenWrt
++    "mips-openwrt-linux-musl", // Entware/OpenWrt
 +    "mipsel-openwrt-linux-gnu", // Entware/OpenWrt
++    "mipsel-openwrt-linux-musl", // Entware/OpenWrt
 +    "x86_64-openwrt-linux-gnu", // Entware/OpenWrt
      "aarch64-apple-darwin",
      "arm64e-apple-darwin",
@@ -367,18 +476,21 @@
              "pc" => Pc,
              "rumprun" => Rumprun,
              "sun" => Sun,
-@@ -1519,6 +1522,15 @@ mod tests {
+@@ -1519,6 +1522,18 @@ mod tests {
          //  - targets emitted by "rustc +nightly --print target-list"
          //  - targets contributors have added
          let targets = [
 +            "aarch64-openwrt-linux-gnu", // Entware/OpenWrt
++            "aarch64-openwrt-linux-musl", // Entware/OpenWrt
 +            "arm-openwrt-linux-gnueabi", // Entware/OpenWrt
 +            "armv5te-openwrt-linux-gnueabi", // Entware/OpenWrt
 +            "armv7-openwrt-linux-gnueabi", // Entware/OpenWrt
 +            "i586-openwrt-linux-gnu", // Entware/OpenWrt
 +            "i686-openwrt-linux-gnu", // Entware/OpenWrt
 +            "mips-openwrt-linux-gnu", // Entware/OpenWrt
++            "mips-openwrt-linux-musl", // Entware/OpenWrt
 +            "mipsel-openwrt-linux-gnu", // Entware/OpenWrt
++            "mipsel-openwrt-linux-musl", // Entware/OpenWrt
 +            "x86_64-openwrt-linux-gnu", // Entware/OpenWrt
              "aarch64-apple-darwin",
              "aarch64-apple-ios",
