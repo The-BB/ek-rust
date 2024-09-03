@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
 PKG_VERSION:=1.80.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
@@ -161,6 +161,7 @@ define Build/Configure
 		echo 'channel = "nightly"'; \
 		echo 'rpath = false'; \
 		echo 'codegen-tests = false'; \
+		$(if $(CONFIG_USE_MUSL),echo 'musl-root = "$(TOOLCHAIN_DIR)"'; ) \
 		echo 'dist-src = false'; \
 		echo '[target.$(RUSTC_TARGET_ARCH)]'; \
 		echo 'ar = "$(TARGET_CROSS)ar"'; \
@@ -168,6 +169,7 @@ define Build/Configure
 		echo 'cxx = "$(TARGET_CROSS)g++"'; \
 		echo 'linker = "$(TARGET_CROSS)gcc"'; \
 		echo 'ranlib = "$(TARGET_CROSS)ranlib"'; \
+		$(if $(CONFIG_USE_MUSL),echo 'crt-static = false'; ) \
 		echo '[dist]'; \
 		echo 'src-tarball = false'; \
 		echo 'compression-formats = ["gz"]'; \
