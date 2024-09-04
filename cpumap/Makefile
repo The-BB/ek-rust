@@ -25,7 +25,7 @@ define Package/cpumap
   SUBMENU:=CPU tools
   TITLE:=view and edit CPU affinities
   URL:=https://codeberg.org/Kiith/cpumap
-  DEPENDS:=@!(mips||mipsel) +libhwloc
+  DEPENDS:=@ARCH_64BIT +libhwloc
 endef
 
 define Package/cpumap/description
