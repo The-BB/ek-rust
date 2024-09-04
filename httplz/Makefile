@@ -27,7 +27,7 @@ define Package/httplz
   SUBMENU:=Web Servers/Proxies
   TITLE:=a basic http server for hosting a folder fast and simply
   URL:=https://github.com/thecoshman/http
-  DEPENDS:=+libopenssl @!(mips||mipsel)
+  DEPENDS:=@ARCH_64BIT +libopenssl
 endef
 
 define Package/httplz/description
