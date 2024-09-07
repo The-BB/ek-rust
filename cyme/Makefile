@@ -25,7 +25,7 @@ define Package/cyme
   CATEGORY:=Utilities
   TITLE:=List system USB buses and devices
   URL:=https://github.com/tuna-f1sh/cyme
-  DEPENDS:=+libusb-1.0
+  DEPENDS:=+libusb-1.0 @!USE_MUSL
 endef
 
 define Package/cyme/description
