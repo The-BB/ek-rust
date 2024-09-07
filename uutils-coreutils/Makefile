@@ -39,14 +39,24 @@ COREUTILS_APPS:= \
 	mkdir mkfifo mknod mktemp more mv \
 	nice nl nohup nproc numfmt \
 	od \
-	paste pathchk pinky pr printenv printf ptx pwd \
+	paste pathchk pr printenv printf ptx pwd \
 	readlink realpath rm rmdir \
 	seq shred shuf sleep sort split stat sum sync \
 	tac tail tee test timeout touch tr true truncate tsort tty \
-	uname unexpand uniq unlink uptime users \
+	uname unexpand uniq unlink \
 	vdir \
-	wc who whoami \
+	wc whoami \
 	yes
+
+DEPENDS_pinky = @!USE_MUSL
+DEPENDS_uptime = @!USE_MUSL
+DEPENDS_users = @!USE_MUSL
+DEPENDS_who = @!USE_MUSL
+
+# error[E0432]: unresolved imports `uucore::utmpx`, `uucore::utmpx`
+ifneq ($(CONFIG_USE_MUSL),y)
+COREUTILS_APPS += pinky uptime users who
+endif
 
 define Package/uutils-coreutils/Default
   SECTION:=utils
@@ -70,7 +80,7 @@ endef
 define GenBins
  define Package/$(1)
   $$(call Package/uutils-coreutils/Default)
-   DEPENDS:=uutils-coreutils-full
+   DEPENDS:=uutils-coreutils-full $(DEPENDS_$(2))
    TITLE:=Utility $(2) from the Rust coreutils
  endef
 
