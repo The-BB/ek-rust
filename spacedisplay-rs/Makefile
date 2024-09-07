@@ -31,6 +31,7 @@ define Package/spacedisplay-rs
   SUBMENU:=Disc
   TITLE:=fast and lightweight tool to scan your disk space
   URL:=https://github.com/funbiscuit/spacedisplay-rs
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/spacedisplay-rs/description
