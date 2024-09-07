@@ -35,7 +35,7 @@ define Package/suricata7/Default
   TITLE:=OISF Suricata IDS
   URL:=https://www.openinfosecfoundation.org/
   DEPENDS:=+jansson +libatomic +libelf +libmagic +libpcap +libcap-ng +liblz4
-  DEPENDS+=+libpcre2 +libyaml +zlib $(ICONV_DEPENDS)
+  DEPENDS+=+libpcre2 +libyaml +zlib +USE_MUSL:libunwind $(ICONV_DEPENDS)
   DEPENDS+= \
 	+SURICATA_$(BUILD_VARIANT)_PYTHON_SUPPORT:python3-light \
 	+SURICATA_$(BUILD_VARIANT)_PYTHON_SUPPORT:python3-logging \
