@@ -24,6 +24,7 @@ define Package/dexios
   SUBMENU:=Encryption
   TITLE:=A secure file encryption utility
   URL:=https://github.com/brxken128/dexios
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/dexios/description
