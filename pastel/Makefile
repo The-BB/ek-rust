@@ -24,6 +24,7 @@ define Package/pastel
   SUBMENU:=Image Manipulation
   TITLE:=a tool to generate, analyze, convert, manipulate colors
   URL:=https://github.com/sharkdp/pastel
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/pastel/description
