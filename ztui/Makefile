@@ -30,7 +30,7 @@ define Package/ztui
   SUBMENU:=VPN
   TITLE:=A terminal UI for ZeroTier
   URL:=https://github.com/erikh/ztui
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @!USE_MUSL
   EXTRA_DEPENDS:=zerotier
 endef
 
