@@ -15,16 +15,22 @@ PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=license-apache license-mit
 PKG_MAINTAINER:=Entware team, https://entware.net
 
-HOST_BUILD_DEPENDS:=python-setuptools-rust/host python-wheel/host
+HOST_BUILD_DEPENDS:= \
+	python-setuptools-rust/host \
+	python-wheel/host \
+	rustc-dev/host
+
+HOST_BUILD_PARALLEL:=1
+
 PKG_BUILD_DEPENDS:=$(HOST_BUILD_DEPENDS)
 
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
-include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
-include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
+include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-host-build.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/maturin
   SECTION:=devel
@@ -46,6 +52,6 @@ rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
 rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call Py3Package,maturin))
 $(eval $(call BuildPackage,maturin))
-$(eval $(call HostBuild))
