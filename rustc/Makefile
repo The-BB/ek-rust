@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
 PKG_VERSION:=1.80.0
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
@@ -41,6 +41,7 @@ define Package/rustc/description
 endef
 
 define Package/rustc/conffiles
+/opt/etc/profile.d/
 /opt/share/cargo/config.toml
 endef
 
@@ -149,6 +150,8 @@ define Package/rustc/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/cargo{,-clippy,-fmt} $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/clippy-driver $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/rust{c,doc,fmt} $(1)/opt/bin
+	$(INSTALL_DIR) $(1)/opt/etc/profile.d
+	$(INSTALL_DATA) ./files/cargo.sh $(1)/opt/etc/profile.d
 	$(INSTALL_DIR) $(1)/opt/lib/rustlib/$(RUSTC_TARGET_ARCH)
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib*.so $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/rustlib/$(RUSTC_TARGET_ARCH)/lib \
