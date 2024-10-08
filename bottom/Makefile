@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bottom
-PKG_VERSION:=0.9.7
+PKG_VERSION:=0.10.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ClementTsang/bottom/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=29c3f75323ae0245576ea23268bb0956757352bf3b16d05f511357655b9cc71e
+PKG_HASH:=1db45fe9bc1fabb62d67bf8a1ea50c96e78ff4d2a5e25bf8ae8880e3ad5af80a
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
