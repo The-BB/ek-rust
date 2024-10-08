@@ -1,29 +1,20 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -23,7 +23,7 @@ description = "Display current network u
+@@ -28,7 +28,7 @@ ui_test = []
  [dependencies]
- anyhow = { version = "1.0.79", features = ["backtrace"] }
- async-trait = "0.1.77"
+ anyhow = { version = "1.0.86", features = ["backtrace"] }
+ async-trait = "0.1.81"
 -chrono = "0.4"
-+chrono = "0.4.34"
- clap-verbosity-flag = "2.1.2"
- clap = { version = "4.4.18", features = ["derive"] }
++chrono = "0.4.38"
+ clap-verbosity-flag = "2.2.1"
+ clap = { version = "4.5.13", features = ["derive"] }
  crossterm = "0.27.0"
-@@ -59,6 +59,8 @@ packet-builder = { version = "0.7.0", gi
- pnet_base = "0.34.0"
- regex = "1.10.3"
- rstest = "0.18.2"
-+# error[E0282]: type annotations needed for `Box<_>`
-+time = "0.3.36"
- 
- [build-dependencies]
- anyhow = "1.0.79"
-@@ -72,3 +74,8 @@ strum = { version = "0.25.0", features =
+@@ -77,3 +77,8 @@ strum = { version = "0.26.3", features =
  [target.'cfg(target_os = "windows")'.build-dependencies]
- http_req = "0.10.2"
- zip = "0.6.6"
+ http_req = "0.11.1"
+ zip = "2.1.6"
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.34" }
++chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.60" }
