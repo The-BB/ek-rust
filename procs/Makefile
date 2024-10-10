@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=procs
-PKG_VERSION:=0.14.5
+PKG_VERSION:=0.14.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/dalance/procs/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=539b88565c775a106063da5cc5148cfdc7e010534f3dbc90cb8f6317d51ca96b
+PKG_HASH:=3d5cd529c858ca637b166bac908e0d8429c33bdfa9d8db6282f36d5732e4e30a
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0435
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/procs
   SECTION:=utils
