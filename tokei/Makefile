@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tokei
-PKG_VERSION:=13.0.0-alpha.1
+PKG_VERSION:=13.0.0-alpha.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/XAMPPRocky/tokei/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=637c6e3d905089f74cf8195666304ac98273cee609541c8a2d87ba438ba08c6e
+PKG_HASH:=03db714caf9fe64adbeef5abd6ba48096b1d63bbd1871aaf5b1fcd9985f8e7d6
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0431
+PKG_BUILD_DEPENDS += chrono-0438
 
 define Package/tokei
   SECTION:=utils
