@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wstunnel
-PKG_VERSION:=9.7.4
+PKG_VERSION:=10.1.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/erebe/wstunnel/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=b18e01f34036073ae0e6f68053cf5f131dbb781932e8566dc63efbed0732b335
+PKG_HASH:=92120fcda8d81df74d4017f37623440ee2508d63d8491a853871f7fd51461101
 
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438
+PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
 
 define Package/wstunnel
   SECTION:=net
