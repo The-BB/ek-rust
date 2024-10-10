@@ -5,22 +5,16 @@
  anyhow = "1"
  bytesize = "1"
 -chrono = "0.4"
-+chrono = "0.4.35"
++chrono = "0.4.38"
  chrono-humanize = "0.2"
  clap = { version = "4", features = ["derive", "cargo", "wrap_help", "deprecated", "env"] }
  clap_complete = "4"
-@@ -78,7 +78,14 @@ reqwest = { version = "0.11", features =
- rstest = "0.18"
- select = "0.6"
- url = "2"
-+# error[E0282]: type annotations needed for `Box<_>`
-+time = "0.3.36"
- 
+@@ -81,3 +81,8 @@ url = "2"
  [target.'cfg(not(windows))'.dev-dependencies]
  # fake_tty does not support Windows for now
  fake-tty = "0.3.1"
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.35" }
++chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.60" }
