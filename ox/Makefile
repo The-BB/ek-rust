@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ox
-PKG_VERSION:=0.4.2
+PKG_VERSION:=0.6.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/curlpipe/ox/tar.gz/refs/tags/$(PKG_VERSION)?
-PKG_HASH:=3c14cbf499f1f260a08593a38ee6bce692bc322dbbe5441e41f3e4a7c9e811b3
+PKG_HASH:=410dc77ea2fcb9e73b8cba5121c3cf41215d4cf8cd219015d5f8e0caea4e42d7
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=LICENSE

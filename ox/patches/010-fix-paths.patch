@@ -9,10 +9,10 @@
    tree | ox -r --stdin\
  ";
  
-@@ -66,7 +66,7 @@ impl CommandLineInterface {
-             stdin: j.contains("--stdin"),
+@@ -73,7 +73,7 @@ impl CommandLineInterface {
              file_type: j.option_arg::<String, Key>(filetype.clone()),
-             config_path: j.option_arg::<String, Key>(config.clone())
+             config_path: j
+                 .option_arg::<String, Key>(config.clone())
 -                .unwrap_or_else(|| "~/.oxrc".to_string()),
 +                .unwrap_or_else(|| "/opt/etc/.oxrc".to_string()),
              to_open: j.finish(),
