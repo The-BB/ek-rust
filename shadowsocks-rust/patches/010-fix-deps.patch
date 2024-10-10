@@ -15,4 +15,4 @@
 +quinn-proto = { path = "../quinn-0.10.4/quinn-proto" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.38" }
-+iana-time-zone = { path = "../iana-time-zone-0.1.60" }
++iana-time-zone = { path = "../iana-time-zone-0.1.61" }
