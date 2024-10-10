@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpg-tui
 PKG_VERSION:=0.11.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/orhun/gpg-tui/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -35,28 +35,16 @@ endef
 
 define Package/gpg-tui/conffiles
 /opt/etc/gpg-tui/gpg-tui.toml
+/opt/etc/profile.d/gpg-tui.sh
 endef
 
 define Package/gpg-tui/install
 	$(INSTALL_DIR) $(1)/opt/etc/gpg-tui
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/config/gpg-tui.toml $(1)/opt/etc/gpg-tui
+	$(INSTALL_DIR) $(1)/opt/etc/profile.d
+	$(INSTALL_DATA) ./files/gpg-tui.sh $(1)/opt/etc/profile.d
 	$(INSTALL_DIR) $(1)/opt/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/gpg-tui $(1)/opt/usr/bin
-endef
-
-define Package/gpg-tui/postinst
-#!/bin/sh
-
-if ! grep -q "GPG_TUI_CONFIG" /opt/etc/profile; then
-  echo -e "\n# set GPG_TUI_CONFIG" >> /opt/etc/profile
-  echo "export GPG_TUI_CONFIG=\"/opt/etc/gpg-tui/gpg-tui.toml\"" >> /opt/etc/profile
-fi
-endef
-
-define Package/gpg-tui/postrm
-#!/bin/sh
-
-sed -i '/GPG_TUI_CONFIG/d' /opt/etc/profile
 endef
 
 $(eval $(call BuildPackage,gpg-tui))
