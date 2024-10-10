@@ -6,13 +6,13 @@
  lexopt = "0.3.0"
 -chrono = "0.4.34"
 +chrono = "=0.4.38"
+ unicode-segmentation = "1.12.0"
  
  [dependencies.gettext-rs]
- version = "0.7.0"
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -6,3 +6,8 @@ members = [
-     "rust/regex-rs",
+@@ -7,3 +7,8 @@ members = [
+     "rust/http-test-server",
  ]
  resolver = "2"
 +

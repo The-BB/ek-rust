@@ -26,7 +26,7 @@
  LIB_SRCS:=$(shell cat mk/libboat.deps)
  LIB_OBJS:=$(patsubst %.cpp,%.o,$(LIB_SRCS))
  LIB_OUTPUT=libboat.a
-@@ -112,7 +115,7 @@ endif
+@@ -114,7 +117,7 @@ endif
  # additional commands
  MKDIR=mkdir -p
  INSTALL=install
@@ -35,7 +35,7 @@
  MSGFMT=msgfmt
  RANLIB?=ranlib
  AR?=ar
-@@ -265,13 +268,13 @@ doc/xhtml/%.html: doc/%.asciidoc | doc/x
+@@ -275,13 +278,13 @@ doc/xhtml/%.html: doc/%.asciidoc | doc/x
  	$(ASCIIDOCTOR) $(ASCIIDOCTOR_OPTS) --backend=html5 -a webfonts! --destination-dir=doc/xhtml $<
  
  doc/generate: doc/generate.cpp doc/split.h
@@ -51,7 +51,7 @@
  
  doc/newsboat-keycmds.asciidoc: doc/generate2 doc/keycmds.dsv
  	doc/generate2 doc/keycmds.dsv > doc/newsboat-keycmds.asciidoc
-@@ -295,7 +298,7 @@ doc/$(PODBOAT).1: doc/manpage-podboat.as
+@@ -305,7 +308,7 @@ doc/$(PODBOAT).1: doc/manpage-podboat.as
  	$(ASCIIDOCTOR) $(ASCIIDOCTOR_OPTS) --require=./doc/man.rb --backend=manpage doc/manpage-podboat.asciidoc
  
  doc/gen-example-config: doc/gen-example-config.cpp doc/split.h
@@ -60,7 +60,7 @@
  
  doc/example-config: doc/gen-example-config doc/configcommands.dsv
  	sed 's/+{backslash}"+/`\\"`/g' doc/configcommands.dsv | doc/gen-example-config > doc/example-config
-@@ -349,14 +352,14 @@ install-podboat: $(PODBOAT)
+@@ -359,14 +362,14 @@ install-podboat: $(PODBOAT)
  
  install-docs: doc
  	$(MKDIR) $(DESTDIR)$(docdir)
