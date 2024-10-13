@@ -18,12 +18,14 @@
  
  [profile.release]
  lto = "fat"
-@@ -81,3 +83,8 @@ strip = "symbols"
+@@ -81,3 +83,10 @@ strip = "symbols"
  [profile.release-with-symbols]
  inherits = "release"
  strip = false
 +
 +[patch.crates-io]
++# aarch64
++aws-lc-sys = { path = "../aws-lc-rs-0.21.2/aws-lc-sys" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
