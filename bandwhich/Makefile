@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bandwhich
-PKG_VERSION:=0.23.0
+PKG_VERSION:=0.23.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/imsnif/bandwhich/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=58b94588ec919fd802fc25cd209084ecc9acdfd99d5478d5ec76670774ff5886
+PKG_HASH:=aafb96d059cf9734da915dca4f5940c319d2e6b54e2ffb884332e9f5e820e6d7
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE.md
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438
+PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
 
 define Package/bandwhich
   SECTION:=net
