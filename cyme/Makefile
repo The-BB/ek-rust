@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cyme
-PKG_VERSION:=1.8.1
+PKG_VERSION:=1.8.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/tuna-f1sh/cyme/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=3db71b9c75b87bec10283d97f298e930ec258abe1d669de5a2f99c390f20c73f
+PKG_HASH:=f3b7f71e52fd29809f25aadff4d949aafe0ff088d514ca587e7103d5b4171d5b
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
