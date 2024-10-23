@@ -5,13 +5,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-dns
-PKG_VERSION:=2.0.1-alpha.1
+PKG_VERSION:=2.0.1_alpha_1
+PKG_VERSION_TAG:=2.0.1-alpha.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2024-04-28
 PKG_SOURCE_VERSION:=0bf9085a52704df5c5630b424b1c096ab78fde12
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_DATE).tar.zst
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION_TAG)-$(PKG_SOURCE_DATE).tar.zst
 PKG_SOURCE_URL:=https://github.com/dead10ck/nu_plugin_dns
 PKG_MIRROR_HASH:=90e64c40fd579328537ab95d458933fecf7a954424678005214206aa0d1e19c7
 
@@ -22,6 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
 PKG_BUILD_DEPENDS += chrono-0435 hickory-dns quinn-0104
+PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/nu-plugin-dns
   SECTION:=utils
