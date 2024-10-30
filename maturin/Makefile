@@ -18,7 +18,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 HOST_BUILD_DEPENDS:= \
 	python-setuptools-rust/host \
 	python-wheel/host \
-	rustc-dev/host
+	rustc-dev
 
 HOST_BUILD_PARALLEL:=1
 
