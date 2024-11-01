@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gobang
-PKG_VERSION:=0.1.0_alpha_5
+PKG_VERSION:=0.1.0_alpha5
 PKG_VERSION_TAG:=0.1.0-alpha.5
-PKG_RELEASE:=3
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION_TAG).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/TaKO8Ki/gobang/tar.gz/refs/tags/v$(PKG_VERSION_TAG)?
