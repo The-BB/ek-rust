@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nu-plugin-dns
-PKG_VERSION:=2.0.1_alpha_1
+PKG_VERSION:=2.0.1_alpha1
 PKG_VERSION_TAG:=2.0.1-alpha.1
 PKG_RELEASE:=1
 
