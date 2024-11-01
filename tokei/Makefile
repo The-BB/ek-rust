@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tokei
-PKG_VERSION:=13.0.0_alpha_5
+PKG_VERSION:=13.0.0_alpha5
 PKG_VERSION_TAG:=13.0.0-alpha.5
 PKG_RELEASE:=1
 
