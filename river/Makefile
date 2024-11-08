@@ -7,12 +7,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=river
-PKG_VERSION:=0.2.1
+PKG_VERSION:=0.5.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/memorysafety/river/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=7c3aebe1e60a53d2d80b81db6b074623b7797570a07dfad93c7f6ae8df0f9b37
+PKG_HASH:=fe96d3693d60be06d0d1810954835f79139495b890b597f42c2b0bfa2bd8c7a6
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE-APACHE
@@ -20,7 +20,7 @@ PKG_LICENSE_FILES:=LICENSE-APACHE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438
+PKG_BUILD_DEPENDS += chrono-0437
 
 define Package/river
   SECTION:=net
