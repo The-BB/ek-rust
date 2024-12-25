@@ -122,7 +122,8 @@ else
 		cargo build $(CARGO_ARGS) \
 		--profile $(CARGO_PKG_PROFILE) \
 		--manifest-path $(CARGO_BUILD_DIR)/Cargo.toml \
-		--out-dir $(CARGO_INSTALL_ROOT)/bin \
+		--artifact-dir $(CARGO_INSTALL_ROOT)/bin \
+		$(if $(findstring s,$(OPENWRT_VERBOSE)),--verbose) \
 		-p uu_$$$$bins; \
 	done
   endef
