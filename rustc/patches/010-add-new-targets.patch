@@ -12,11 +12,12 @@
  pub(crate) mod solid;
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/base/openwrt_linux.rs
-@@ -0,0 +1,22 @@
-+use crate::spec::{cvs, RelroLevel, SplitDebuginfo, TargetOptions};
+@@ -0,0 +1,23 @@
 +use std::borrow::Cow;
 +
-+pub fn opts() -> TargetOptions {
++use crate::spec::{RelroLevel, SplitDebuginfo, TargetOptions, cvs};
++
++pub(crate) fn opts() -> TargetOptions {
 +    TargetOptions {
 +        os: "linux".into(),
 +        vendor: "openwrt".into(),
@@ -38,18 +39,17 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/base/openwrt_linux_gnu.rs
 @@ -0,0 +1,5 @@
-+use crate::spec::{base, TargetOptions};
++use crate::spec::{TargetOptions, base};
 +
-+pub fn opts() -> TargetOptions {
++pub(crate) fn opts() -> TargetOptions {
 +    TargetOptions { env: "gnu".into(), ..base::openwrt_linux::opts() }
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/base/openwrt_linux_musl.rs
-@@ -0,0 +1,16 @@
-+use crate::spec::crt_objects;
-+use crate::spec::{base, LinkSelfContainedDefault, TargetOptions};
+@@ -0,0 +1,15 @@
++use crate::spec::{LinkSelfContainedDefault, TargetOptions, base, crt_objects};
 +
-+pub fn opts() -> TargetOptions {
++pub(crate) fn opts() -> TargetOptions {
 +    let mut base = base::openwrt_linux::opts();
 +
 +    base.env = "musl".into();
@@ -65,16 +65,16 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/aarch64_openwrt_linux_gnu.rs
 @@ -0,0 +1,32 @@
-+use crate::spec::{base, SanitizerSet, StackProbeType, Target, TargetOptions};
++use crate::spec::{SanitizerSet, StackProbeType, Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "aarch64-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("ARM64 Linux (kernel 4.1, glibc 2.17+)".into()),
++            tier: Some(1),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 64,
 +        data_layout: "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128-Fn32".into(),
@@ -100,9 +100,9 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/aarch64_openwrt_linux_musl.rs
 @@ -0,0 +1,28 @@
-+use crate::spec::{base, SanitizerSet, StackProbeType, Target, TargetOptions};
++use crate::spec::{SanitizerSet, StackProbeType, Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_musl::opts();
 +    base.max_atomic_width = Some(128);
 +    base.supports_xray = true;
@@ -117,10 +117,10 @@
 +    Target {
 +        llvm_target: "aarch64-openwrt-linux-musl".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("ARM64 Linux with musl 1.2.3".into()),
++            tier: Some(2),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 64,
 +        data_layout: "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128-Fn32".into(),
@@ -131,16 +131,16 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/arm_openwrt_linux_gnueabi.rs
 @@ -0,0 +1,24 @@
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "arm-openwrt-linux-gnueabi".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("Armv6 Linux (kernel 3.2, glibc 2.17)".into()),
++            tier: Some(2),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64".into(),
@@ -158,16 +158,16 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/armv5te_openwrt_linux_gnueabi.rs
 @@ -0,0 +1,25 @@
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "armv5te-openwrt-linux-gnueabi".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("Armv5TE Linux (kernel 4.4, glibc 2.23)".into()),
++            tier: Some(2),
++            host_tools: Some(false),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64".into(),
@@ -186,19 +186,19 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/armv7_openwrt_linux_gnueabi.rs
 @@ -0,0 +1,27 @@
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
 +// This target is for glibc Linux on ARMv7 without thumb-mode, NEON or
 +// hardfloat.
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "armv7-openwrt-linux-gnueabi".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("Armv7-A Linux (kernel 4.15, glibc 2.27)".into()),
++            tier: Some(2),
++            host_tools: Some(false),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64".into(),
@@ -218,7 +218,7 @@
 @@ -0,0 +1,8 @@
 +use crate::spec::Target;
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = super::i686_openwrt_linux_gnu::target();
 +    base.cpu = "pentium".into();
 +    base.llvm_target = "i586-openwrt-linux-gnu".into();
@@ -227,9 +227,9 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/i686_openwrt_linux_gnu.rs
 @@ -0,0 +1,26 @@
-+use crate::spec::{base, Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target};
++use crate::spec::{Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_gnu::opts();
 +    base.cpu = "pentium4".into();
 +    base.max_atomic_width = Some(64);
@@ -240,10 +240,10 @@
 +    Target {
 +        llvm_target: "i686-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("32-bit Linux (kernel 3.2, glibc 2.17+)".into()),
++            tier: Some(1),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:e-p:32:32-p270:32:32-p271:32:32-p272:64:64-\
@@ -257,16 +257,16 @@
 +++ b/compiler/rustc_target/src/spec/targets/mips_openwrt_linux_gnu.rs
 @@ -0,0 +1,26 @@
 +use crate::abi::Endian;
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "mips-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("MIPS Linux (kernel 4.4, glibc 2.23)".into()),
++            tier: Some(3),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
@@ -286,9 +286,9 @@
 +++ b/compiler/rustc_target/src/spec/targets/mips_openwrt_linux_musl.rs
 @@ -0,0 +1,23 @@
 +use crate::abi::Endian;
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_musl::opts();
 +    base.cpu = "mips32r2".into();
 +    base.features = "+mips32r2,+soft-float".into();
@@ -297,10 +297,10 @@
 +    Target {
 +        llvm_target: "mips-openwrt-linux-musl".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("MIPS Linux with musl 1.2.3".into()),
++            tier: Some(3),
++            host_tools: Some(false),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
@@ -311,16 +311,16 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/mipsel_openwrt_linux_gnu.rs
 @@ -0,0 +1,25 @@
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    Target {
 +        llvm_target: "mipsel-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("MIPS (little endian) Linux (kernel 4.4, glibc 2.23)".into()),
++            tier: Some(3),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
@@ -339,9 +339,9 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/mipsel_openwrt_linux_musl.rs
 @@ -0,0 +1,22 @@
-+use crate::spec::{base, Target, TargetOptions};
++use crate::spec::{Target, TargetOptions, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_musl::opts();
 +    base.cpu = "mips32r2".into();
 +    base.features = "+mips32r2,+soft-float".into();
@@ -350,10 +350,10 @@
 +    Target {
 +        llvm_target: "mipsel-openwrt-linux-musl".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("MIPS (little endian) Linux with musl 1.2.3".into()),
++            tier: Some(3),
++            host_tools: Some(false),
++            std: Some(true),
 +        },
 +        pointer_width: 32,
 +        data_layout: "e-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64".into(),
@@ -364,9 +364,9 @@
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/x86_64_openwrt_linux_gnu.rs
 @@ -0,0 +1,42 @@
-+use crate::spec::{base, Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target};
++use crate::spec::{Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target, base};
 +
-+pub fn target() -> Target {
++pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_gnu::opts();
 +    base.cpu = "x86-64".into();
 +    base.plt_by_default = false;
@@ -394,10 +394,10 @@
 +    Target {
 +        llvm_target: "x86_64-openwrt-linux-gnu".into(),
 +        metadata: crate::spec::TargetMetadata {
-+            description: None,
-+            tier: None,
-+            host_tools: None,
-+            std: None,
++            description: Some("64-bit Linux (kernel 3.2+, glibc 2.17+)".into()),
++            tier: Some(1),
++            host_tools: Some(true),
++            std: Some(true),
 +        },
 +        pointer_width: 64,
 +        data_layout:
@@ -408,7 +408,7 @@
 +}
 --- a/compiler/rustc_target/src/spec/mod.rs
 +++ b/compiler/rustc_target/src/spec/mod.rs
-@@ -1524,6 +1524,20 @@ macro_rules! supported_targets {
+@@ -1618,6 +1618,20 @@ macro_rules! supported_targets {
  }
  
  supported_targets! {
@@ -431,7 +431,7 @@
      ("i686-unknown-linux-gnu", i686_unknown_linux_gnu),
 --- a/src/tools/build-manifest/src/main.rs
 +++ b/src/tools/build-manifest/src/main.rs
-@@ -49,6 +49,18 @@ static HOSTS: &[&str] = &[
+@@ -50,6 +50,18 @@ static HOSTS: &[&str] = &[
  ];
  
  static TARGETS: &[&str] = &[
@@ -448,11 +448,11 @@
 +    "mipsel-openwrt-linux-musl", // Entware/OpenWrt
 +    "x86_64-openwrt-linux-gnu", // Entware/OpenWrt
      "aarch64-apple-darwin",
-     "arm64e-apple-darwin",
      "aarch64-apple-ios",
---- a/vendor/target-lexicon-0.12.14/src/targets.rs
-+++ b/vendor/target-lexicon-0.12.14/src/targets.rs
-@@ -577,6 +577,7 @@ pub enum Vendor {
+     "aarch64-apple-ios-macabi",
+--- a/vendor/target-lexicon-0.12.16/src/targets.rs
++++ b/vendor/target-lexicon-0.12.16/src/targets.rs
+@@ -583,6 +583,7 @@ pub enum Vendor {
      Kmc,
      Nintendo,
      Nvidia,
@@ -460,7 +460,7 @@
      Pc,
      Rumprun,
      Sun,
-@@ -609,6 +610,7 @@ impl Vendor {
+@@ -615,6 +616,7 @@ impl Vendor {
              Kmc => "kmc",
              Nintendo => "nintendo",
              Nvidia => "nvidia",
@@ -468,7 +468,7 @@
              Pc => "pc",
              Rumprun => "rumprun",
              Sun => "sun",
-@@ -1291,6 +1293,7 @@ impl FromStr for Vendor {
+@@ -1319,6 +1321,7 @@ impl FromStr for Vendor {
              "kmc" => Kmc,
              "nintendo" => Nintendo,
              "nvidia" => Nvidia,
@@ -476,7 +476,7 @@
              "pc" => Pc,
              "rumprun" => Rumprun,
              "sun" => Sun,
-@@ -1519,6 +1522,18 @@ mod tests {
+@@ -1552,6 +1555,18 @@ mod tests {
          //  - targets emitted by "rustc +nightly --print target-list"
          //  - targets contributors have added
          let targets = [

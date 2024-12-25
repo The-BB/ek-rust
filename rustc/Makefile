@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.80.0
-PKG_RELEASE:=3
+PKG_VERSION:=1.83.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=6f606c193f230f6b2cae4576f7b24d50f5f9b25dff11dbf9b22f787d3521d672
+PKG_HASH:=722d773bd4eab2d828d7dd35b59f0b017ddf9a97ee2b46c1b7f7fac5c8841c6e
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -58,12 +58,12 @@ endif
 
 define Build/Configure
 	( \
-		echo 'change-id = 128032'; \
+		echo 'change-id = 133476'; \
 		echo '[llvm]'; \
-		echo 'targets = "AArch64;ARM;Mips;X86"'; \
-		echo 'experimental-targets = ""'; \
 		echo 'download-ci-llvm = false'; \
 		echo 'allow-old-toolchain = true'; \
+		echo 'targets = "AArch64;ARM;Mips;X86"'; \
+		echo 'experimental-targets = ""'; \
 		echo 'link-shared = false'; \
 		echo 'cflags = "-pthread"'; \
 		echo 'cxxflags = "-pthread"'; \
@@ -104,7 +104,7 @@ define Build/Configure
 		echo '[rust]'; \
 		echo 'incremental = true'; \
 		echo 'channel = "nightly"'; \
-		echo 'rpath = false'; \
+		echo 'rpath = true'; \
 		echo 'codegen-tests = false'; \
 		$(if $(CONFIG_USE_MUSL),echo 'musl-root = "$(TOOLCHAIN_DIR)"'; ) \
 		echo 'dist-src = false'; \
