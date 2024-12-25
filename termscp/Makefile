@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=termscp
-PKG_VERSION:=0.15.0
+PKG_VERSION:=0.16.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/veeso/termscp/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=e3f5a38feb183cd2abd2f1e5388d4d438b5a431ac7923aa71cab500c0765bd51
+PKG_HASH:=318673db7d4c8b580f8f6a2b4e305fed3e7afc151217be5e16cf1a8f33fc2af4
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE

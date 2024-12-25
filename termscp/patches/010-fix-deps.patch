@@ -19,7 +19,7 @@
  open = "^5.0"
  rand = "^0.8.5"
  regex = "^1"
-@@ -117,3 +118,10 @@ incremental = true
+@@ -119,3 +120,10 @@ incremental = true
  
  [profile.release]
  strip = true
