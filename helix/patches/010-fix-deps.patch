@@ -5,7 +5,7 @@
  arc-swap = { version = "1.7.1" }
  
 -gix = { version = "0.63.0", features = ["attributes", "status"], default-features = false, optional = true }
-+gix = { version = "0.64.0", features = ["attributes", "status"], default-features = false, optional = true }
++gix = { version = "=0.64.0", features = ["attributes", "status"], default-features = false, optional = true }
  imara-diff = "0.1.6"
  anyhow = "1"
  
