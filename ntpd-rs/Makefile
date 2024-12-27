@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ntpd-rs
-PKG_VERSION:=1.3.0
+PKG_VERSION:=1.4.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/pendulum-project/ntpd-rs/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=f3fd862f1066b5f89473dc1070102566a29bbcc1c4868d087a2cc0cac9849062
+PKG_HASH:=172210e8ef5f4fbac9b09f211cedc6bebce0f2686870ba33dd87cb579da07e80
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=COPYING LICENSE-APACHE LICENSE-MIT
@@ -50,7 +50,6 @@ define Package/ntpd-rs/install
 #		$(PKG_INSTALL_DIR)/opt/bin/ntp-metrics-exporter $(1)/opt/usr/bin
 #	$(INSTALL_BIN) \
 #		$(PKG_INSTALL_DIR)/opt/bin/nts-pool-ke $(1)/opt/usr/bin
-	$(INSTALL_DIR) $(1)/opt/var/run/ntpd-rs
 endef
 
 $(eval $(call BuildPackage,ntpd-rs))

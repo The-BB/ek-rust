@@ -29,12 +29,12 @@
 --- a/ntpd/src/daemon/spawn/mod.rs
 +++ b/ntpd/src/daemon/spawn/mod.rs
 @@ -1,4 +1,4 @@
--use std::{net::SocketAddr, sync::atomic::AtomicU64};
-+use std::{net::SocketAddr, sync::atomic::AtomicUsize};
+-use std::{net::SocketAddr, path::PathBuf, sync::atomic::AtomicU64};
++use std::{net::SocketAddr, path::PathBuf, sync::atomic::AtomicUsize};
  
  use ntp_proto::{ProtocolVersion, SourceNtsData};
  use serde::{Deserialize, Serialize};
-@@ -22,8 +22,8 @@ pub struct SpawnerId(u64);
+@@ -23,8 +23,8 @@ pub struct SpawnerId(u64);
  
  impl SpawnerId {
      pub fn new() -> SpawnerId {
@@ -45,7 +45,7 @@
      }
  }
  
-@@ -41,8 +41,8 @@ pub struct SourceId(u64);
+@@ -42,8 +42,8 @@ pub struct SourceId(u64);
  
  impl SourceId {
      pub fn new() -> SourceId {
