@@ -27,7 +27,7 @@
              options: Options {
                  timeout: RwLock::new(10),
                  limits: Arc::new(Limits::default()),
-@@ -250,7 +250,7 @@ impl RawSftpSession {
+@@ -254,7 +254,7 @@ impl RawSftpSession {
              .options
              .limits
              .open_handles
@@ -36,7 +36,7 @@
          {
              return Err(Error::Limited("handle limit reached".to_owned()));
          }
-@@ -447,7 +447,7 @@ impl RawSftpSession {
+@@ -451,7 +451,7 @@ impl RawSftpSession {
              .options
              .limits
              .open_handles

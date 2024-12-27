@@ -7,13 +7,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=russh-sftp
-PKG_VERSION:=2.0.3
+PKG_VERSION:=2.0.6
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=951aa3c8594031a72c8a26858f342b07a3e2abbd
+PKG_SOURCE_VERSION:=37badd3968b53e9efcc6bb03f8c6410a7db8108e
 PKG_SOURCE_URL:=https://github.com/AspectUnk/russh-sftp
-PKG_MIRROR_HASH:=b627d4543a04b84ad6be798e09911146fce3bf46be786dbe4dc474d59659a4f5
+PKG_MIRROR_HASH:=2808f24b8456e17c25981120574a47ea4c5e263fef67886c5d08ba06bbce0c68
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -37,7 +37,6 @@ define Package/russh-sftp-$(PKG_VERSION)/description
 endef
 
 Build/Compile:=:
-MoveLibs:=:
 Build/InstallDev:=:
 
 $(eval $(call BuildPackage,russh-sftp-$(PKG_VERSION)))
