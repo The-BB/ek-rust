@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cyme
-PKG_VERSION:=1.8.5
+PKG_VERSION:=2.1.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/tuna-f1sh/cyme/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=f3b7f71e52fd29809f25aadff4d949aafe0ff088d514ca587e7103d5b4171d5b
+PKG_HASH:=a4259f3a77a9b01dc1e8968a184113d47e353c332520f9384cd8d90f5d88b7bb
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
@@ -25,7 +25,7 @@ define Package/cyme
   CATEGORY:=Utilities
   TITLE:=List system USB buses and devices
   URL:=https://github.com/tuna-f1sh/cyme
-  DEPENDS:=+libusb-1.0 @!USE_MUSL
+  DEPENDS:=+libusb-1.0
 endef
 
 define Package/cyme/description
