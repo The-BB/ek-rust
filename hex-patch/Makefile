@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hex-patch
-PKG_VERSION:=1.9.0
+PKG_VERSION:=1.9.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Etto48/HexPatch/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=a42ba7fdbd29fb377c059f3539bc8a913d70b973360f02a459bc23bcf1385b5d
+PKG_HASH:=5c8f6e122953fad19335630a185265e9a52d46fcfaa71ee7750ce986179c3480
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 flurry-051 russh-sftp-203 seize-033
+PKG_BUILD_DEPENDS += chrono-0438 flurry-051 russh-sftp-206 seize-033
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/hex-patch
