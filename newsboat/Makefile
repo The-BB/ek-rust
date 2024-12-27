@@ -5,14 +5,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=newsboat
-PKG_VERSION:=2.37
+PKG_VERSION:=2.38
 PKG_RELEASE:=1
 
 PKG_GIT_TAG:=r$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/newsboat/newsboat/tar.gz/refs/tags/$(PKG_GIT_TAG)?
-PKG_HASH:=794b0727de71481fe08866bdb170ec97e5b36f2f364123eadfecf2f463dfe75f
+PKG_HASH:=f02341cc0437d6bd364f03f5b6df950b3bc59513250c3dbb38f8f9b59022d26e
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
