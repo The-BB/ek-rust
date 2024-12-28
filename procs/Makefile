@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=procs
-PKG_VERSION:=0.14.6
+PKG_VERSION:=0.14.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/dalance/procs/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=3d5cd529c858ca637b166bac908e0d8429c33bdfa9d8db6282f36d5732e4e30a
+PKG_HASH:=b9cf37275bdf1c03786a035c1cd495a93cbf94406eb8c261825d1fd59dcfd61d
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
