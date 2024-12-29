@@ -1,6 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -281,3 +281,15 @@ byteorder = "1.5"
+@@ -273,3 +273,15 @@ byteorder = "1.5"
  env_logger = "0.11"
  byte_string = "1.0"
  tokio = { version = "1", features = ["net", "time", "macros", "io-util"] }
