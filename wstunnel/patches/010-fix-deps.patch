@@ -1,24 +1,24 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -12,7 +12,8 @@ async-trait = "0.1.83"
+@@ -11,7 +11,7 @@ anyhow = "1.0.94"
  base64 = "0.22.1"
  scopeguard = "1.2.0"
  
--bb8 = { version = "0.8", features = [] }
-+# bb8-0.8.5: error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
-+bb8 = { version = "=0.8.3", features = [] }
- bytes = { version = "1.7.2", features = [] }
- clap = { version = "4.5.19", features = ["derive", "env"] }
+-bb8 = { version = "0.9.0", features = [] }
++bb8 = { version = "=0.9.0", features = [] }
+ bytes = { version = "1.9.0", features = [] }
+ clap = { version = "4.5.23", features = ["derive", "env"] }
  fast-socks5 = { version = "0.9.6", features = [] }
-@@ -69,6 +70,7 @@ rcgen = { version = "0.13.1", default-fe
+@@ -71,6 +71,8 @@ rcgen = { version = "0.13.1", default-fe
  
  [dev-dependencies]
  testcontainers = "0.23.1"
++aws-lc-sys = "=0.21.2"
 +chrono = "=0.4.38"
  
  [profile.release]
  lto = "fat"
-@@ -81,3 +83,10 @@ strip = "symbols"
+@@ -83,3 +85,12 @@ strip = "symbols"
  [profile.release-with-symbols]
  inherits = "release"
  strip = false
@@ -26,6 +26,8 @@
 +[patch.crates-io]
 +# aarch64
 +aws-lc-sys = { path = "../aws-lc-rs-0.21.2/aws-lc-sys" }
++# mips(el)
++bb8 = { path = "../bb8-0.9.0/bb8" }
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.38" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
