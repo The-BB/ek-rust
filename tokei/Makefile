@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tokei
-PKG_VERSION:=13.0.0_alpha5
-PKG_VERSION_TAG:=13.0.0-alpha.5
+PKG_REAL_VERSION:=13.0.0-alpha.7
+PKG_VERSION:=$(subst -alpha.,_alpha,$(PKG_REAL_VERSION))
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION_TAG).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/XAMPPRocky/tokei/tar.gz/refs/tags/v$(PKG_VERSION_TAG)?
-PKG_HASH:=03db714caf9fe64adbeef5abd6ba48096b1d63bbd1871aaf5b1fcd9985f8e7d6
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_REAL_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/XAMPPRocky/tokei/tar.gz/refs/tags/v$(PKG_REAL_VERSION)?
+PKG_HASH:=c3c2491b797793a1dac6864df70922f27fa6852f9efee7065f34d3c178a82dec
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -31,8 +31,8 @@ endef
 
 define Package/tokei/description
   Tokei is a program that displays statistics about your code.
-  Tokei will show the number of files, total lines within those
-  files and code, comments, and blanks grouped by language.
+  Tokei will show the number of files, total lines within those files and code,
+  comments, and blanks grouped by language.
 endef
 
 define Package/tokei/install
