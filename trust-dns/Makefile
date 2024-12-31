@@ -4,6 +4,7 @@
 
 # XXX The latest version.
 # For details, see: https://www.memorysafety.org/blog/announcing-hickory-dns/
+#		    https://github.com/bluejekyll/trust-dns?tab=readme-ov-file
 # Trust-DNS was rebranded to Hickory DNS and moved to github.com/hickory-dns/hickory-dns
 
 include $(TOPDIR)/rules.mk
