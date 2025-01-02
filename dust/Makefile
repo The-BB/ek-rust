@@ -2,11 +2,6 @@
 #
 # Copyright (C) 2024 Entware
 
-# XXX since 0.8.4:
-# mips(el):
-#	error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
-#	error: could not compile `du-dust` due to previous error
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dust
