@@ -45,7 +45,7 @@ endef
 define Package/nu-plugin-port-scan/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_port_scan"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_port_scan"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-port-scan))
