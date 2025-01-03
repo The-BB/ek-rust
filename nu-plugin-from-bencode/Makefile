@@ -43,7 +43,7 @@ endef
 define Package/nu-plugin-from-bencode/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_from_bencode"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_from_bencode"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-from-bencode))
