@@ -49,7 +49,7 @@ endef
 define Package/nu-plugin-dns/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_dns"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_dns"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-dns))
