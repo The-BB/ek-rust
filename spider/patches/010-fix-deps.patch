@@ -9,6 +9,16 @@
  cron = { version = "0.12", optional = true }
  async-trait = { version = "0.1", optional = true }
  strum = { version = "0.26", features = ["derive"] }
+@@ -70,7 +70,8 @@ statrs = { version = "0.17", optional =
+ aho-corasick = { version = "1", optional = true }
+ tracing = { version = "0.1", default-features = false, features = ["std"], optional = true }
+ sysinfo = { version = "0.33", default-features = false, features = ["system"], optional = true }
+-sqlx = { version = "0.8", features = [ "runtime-tokio", "sqlite" ], optional = true }
++# x86_64: error: could not compile `sqlx` (lib) due to 2 previous errors
++sqlx = { version = "0.8", default-features = false, features = [ "runtime-tokio", "sqlite" ], optional = true }
+ 
+ [dependencies.spider_chrome]
+ version = "2"
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -10,3 +10,8 @@ members = [
