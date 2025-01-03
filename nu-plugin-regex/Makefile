@@ -43,7 +43,7 @@ endef
 define Package/nu-plugin-regex/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_regex"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_regex"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-regex))
