@@ -47,7 +47,7 @@ endef
 define Package/nu-plugin-periodic-table/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_periodic_table"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_periodic_table"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-periodic-table))
