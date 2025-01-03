@@ -154,37 +154,37 @@ endef
 define Package/nu-plugin-custom-values/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_custom_values"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_custom_values"
 endef
 
 define Package/nu-plugin-formats/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_formats"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_formats"
 endef
 
 define Package/nu-plugin-gstat/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_gstat"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_gstat"
 endef
 
 define Package/nu-plugin-inc/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_inc"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_inc"
 endef
 
 define Package/nu-plugin-query/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_query"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_query"
 endef
 
 define Package/nu-plugin-stress-internals/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_stress_internals"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_stress_internals"
 endef
 
 $(eval $(call BuildPackage,nushell))
