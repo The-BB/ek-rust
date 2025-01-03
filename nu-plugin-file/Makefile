@@ -44,7 +44,7 @@ endef
 define Package/nu-plugin-file/postinst
 #!/bin/sh
 
-nu --commands "register /opt/usr/bin/nu_plugins/nu_plugin_file"
+nu --commands "plugin add /opt/usr/bin/nu_plugins/nu_plugin_file"
 endef
 
 $(eval $(call BuildPackage,nu-plugin-file))
