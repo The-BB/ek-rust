@@ -110,6 +110,9 @@ define Host/Configure
 		echo 'src-tarball = false'; \
 		echo 'compression-formats = ["gz"]'; \
 	) > $(HOST_BUILD_DIR)/config.toml
+
+	$(FIND) $(HOST_BUILD_DIR)/vendor -type f -name ".cargo-checksum.json" -exec \
+		$(SED) 's/\("files":{\)[^}]*/\1/' {} +
 endef
 
 Host/Compile:=:
@@ -118,7 +121,7 @@ define Host/Install
 	( cd $(HOST_BUILD_DIR); \
 		CARGO_HOME="$(STAGING_DIR)/host/share/cargo.dev" \
 		DESTDIR=$(HOST_BUILD_DIR)/install \
-		$(STAGING_DIR_HOSTPKG)/bin/python3 x.py install \
+		$(STAGING_DIR_HOSTPKG)/bin/python3 x.py install; \
 	)
 endef
 
@@ -175,6 +178,9 @@ define Build/Configure
 		echo 'src-tarball = false'; \
 		echo 'compression-formats = ["gz"]'; \
 	) > $(PKG_BUILD_DIR)/config.toml
+
+	$(FIND) $(PKG_BUILD_DIR)/vendor -type f -name ".cargo-checksum.json" -exec \
+		$(SED) 's/\("files":{\)[^}]*/\1/' {} +
 endef
 
 Build/Compile:=:
@@ -201,11 +207,10 @@ Hooks/Compile/Post += FixPreInstall
 define Build/Install
 	( cd $(PKG_BUILD_DIR); \
 		CARGO_HOME="$(STAGING_DIR)/host/share/cargo.dev" \
+		DESTDIR=$(PKG_INSTALL_DIR) \
 		HOST_PKG_CONFIG_PATH="$(STAGING_DIR_HOST)/lib/pkgconfig:$(STAGING_DIR_HOSTPKG)/lib/pkgconfig" \
 		PKG_CONFIG_ALLOW_CROSS=1 \
-		DESTDIR=$(PKG_INSTALL_DIR) \
-		$(STAGING_DIR_HOSTPKG)/bin/python3 x.py install \
-		library/std --stage 1; \
+		$(STAGING_DIR_HOSTPKG)/bin/python3 x.py install library/std --stage 1; \
 	)
 endef
 
