@@ -12,8 +12,6 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
 PKG_HASH:=722d773bd4eab2d828d7dd35b59f0b017ddf9a97ee2b46c1b7f7fac5c8841c6e
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 
@@ -119,6 +117,9 @@ define Build/Configure
 		echo 'src-tarball = false'; \
 		echo 'compression-formats = ["gz"]'; \
 	) > $(PKG_BUILD_DIR)/config.toml
+
+	$(FIND) $(PKG_BUILD_DIR)/vendor -type f -name ".cargo-checksum.json" -exec \
+		$(SED) 's/\("files":{\)[^}]*/\1/' {} +
 endef
 
 Build/Compile:=:
@@ -137,10 +138,10 @@ define Build/Install
 	( cd $(PKG_BUILD_DIR); \
 		CARGO_HOME="$(STAGING_DIR)/host/share/cargo.dev" \
 		CXXFLAGS='-I$(PKG_BUILD_DIR)/build/$(RUSTC_TARGET_ARCH)/llvm/include' \
-		HOST_PKG_CONFIG_PATH="$(STAGING_DIR_HOST)/lib/pkgconfig:$(STAGING_DIR_HOSTPKG)/lib/pkgconfig" \
-		RUSTFLAGS='-L native=$(PKG_BUILD_DIR)/build/$(RUSTC_TARGET_ARCH)/llvm/lib' \
-		PKG_CONFIG_ALLOW_CROSS=1 \
 		DESTDIR=$(PKG_INSTALL_DIR) \
+		HOST_PKG_CONFIG_PATH="$(STAGING_DIR_HOST)/lib/pkgconfig:$(STAGING_DIR_HOSTPKG)/lib/pkgconfig" \
+		PKG_CONFIG_ALLOW_CROSS=1 \
+		RUSTFLAGS='-L native=$(PKG_BUILD_DIR)/build/$(RUSTC_TARGET_ARCH)/llvm/lib' \
 		$(STAGING_DIR_HOSTPKG)/bin/python3 x.py install; \
 	)
 endef
