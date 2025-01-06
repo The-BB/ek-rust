@@ -2,6 +2,10 @@ if PACKAGE_shadowsocks-rust
 
 comment "Default features"
 
+	config SS_RUST_AEAD_CIPHER
+		bool "Enable AEAD ciphers"
+		default y
+
 	config SS_RUST_AEAD_CIPHER_2022
 		bool "Enable AEAD 2022"
 		default y
@@ -37,9 +41,11 @@ comment "Optional features"
 
 	config SS_RUST_AEAD_CIPHER_2022_EXTRA
 		bool "Enable AEAD 2022 with extra ciphers"
+		depends on SS_RUST_AEAD_CIPHER_2022
 
 	config SS_RUST_AEAD_CIPHER_EXTRA
 		bool "Enable extra AEAD ciphers"
+		depends on SS_RUST_AEAD_CIPHER
 
 	config SS_RUST_DNS_OVER_H3
 		bool "Enable support DNS-over-H3"

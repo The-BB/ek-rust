@@ -5,18 +5,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shadowsocks-rust
-PKG_VERSION:=1.21.2
+PKG_VERSION:=1.22.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/shadowsocks/shadowsocks-rust/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=a2269e896a27a183dfd6d757d130978b46e1ac19f936c4229188d017b7ecf867
+PKG_HASH:=2857372667b66aa7f8ef2d27a8a19209cbf3e5da2e6d1d1d493411d72d173861
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Entware team, https://entware.net
 
 PKG_CONFIG_DEPENDS:= \
+	CONFIG_SS_RUST_AEAD \
 	CONFIG_SS_RUST_AEAD_CIPHER_2022 \
 	CONFIG_SS_RUST_AEAD_CIPHER_2022_EXTRA \
 	CONFIG_SS_RUST_AEAD_CIPHER_EXTRA \
@@ -44,7 +45,7 @@ PKG_CONFIG_DEPENDS:= \
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161 quinn-0104
+PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
 
 define Package/shadowsocks-rust/Default
   SECTION:=net
@@ -114,6 +115,7 @@ endef
 BINS:=local manager server service utility
 
 DEFAULT_FEATURES:= \
+	$(if $(CONFIG_SS_RUST_AEAD),aead-cipher) \
 	$(if $(CONFIG_SS_RUST_AEAD_CIPHER_2022),aead-cipher-2022) \
 	$(if $(CONFIG_SS_RUST_HICKORY_DNS),hickory-dns) \
 	$(if $(CONFIG_SS_RUST_LOCAL_HTTP),local-http) \
