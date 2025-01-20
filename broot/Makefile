@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=broot
-PKG_VERSION:=1.44.2
+PKG_VERSION:=1.44.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Canop/broot/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=e1b78354c21680914a07ed4b856257c83ef873b878ef281bd2d1aed7fcba3828
+PKG_HASH:=554abc12c8343a0e921f92740e06bf3a86993f71eb78246c9b494293da13b1df
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438
+PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
 
 define Package/broot
   SECTION:=utils
