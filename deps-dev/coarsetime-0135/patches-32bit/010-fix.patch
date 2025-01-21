@@ -55,7 +55,7 @@
  
  use super::duration::*;
  #[allow(unused_imports)]
-@@ -17,7 +18,7 @@ use super::helpers::*;
+@@ -18,7 +19,7 @@ use super::helpers::*;
  #[derive(Copy, Clone, Debug, Hash, Ord, Eq, PartialOrd, PartialEq)]
  pub struct Instant(u64);
  
@@ -64,7 +64,7 @@
  
  #[cfg(windows)]
  extern "system" {
-@@ -61,9 +62,9 @@ impl Instant {
+@@ -62,9 +63,9 @@ impl Instant {
      ///
      /// This function also updates the stored instant.
      pub fn now() -> Instant {
@@ -77,7 +77,7 @@
      }
  
      /// Returns an instant corresponding to "now" without updating the cached value.
-@@ -71,8 +72,8 @@ impl Instant {
+@@ -72,8 +73,8 @@ impl Instant {
      ///
      /// `now()` is generally preferred over this function.
      pub fn now_without_cache_update() -> Instant {
@@ -88,7 +88,7 @@
      }
  
      /// Returns an instant corresponding to the latest update
-@@ -88,8 +89,8 @@ impl Instant {
+@@ -89,8 +90,8 @@ impl Instant {
      /// This function should be called frequently, for example in an event loop
      /// or using an `Updater` task.
      pub fn update() {
@@ -99,7 +99,7 @@
      }
  
      /// Returns the amount of time elapsed from another instant to this one
-@@ -225,14 +226,14 @@ impl Instant {
+@@ -247,14 +248,14 @@ impl Instant {
  
      #[inline]
      fn _update(now: u64) {
