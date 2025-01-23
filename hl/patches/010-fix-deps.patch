@@ -9,16 +9,16 @@
  chrono-tz = { version = "0", features = ["serde"] }
  clap = { version = "4", features = ["wrap_help", "derive", "env", "string"] }
  clap_complete = "4"
-@@ -98,6 +98,8 @@ mockall = "0"
- stats_alloc = "0"
+@@ -100,6 +100,8 @@ stats_alloc = "0"
  regex = "1"
  wildmatch = "2"
+ rstest = "0"
 +# warning: Patch `iana-time-zone v0.1.60 (.../iana-time-zone-0.1.60)` was not used in the crate graph.
 +iana-time-zone = "=0.1.60"
  
  [profile.release]
  debug = false
-@@ -149,3 +151,8 @@ harness = false
+@@ -151,3 +153,8 @@ harness = false
  name = "encstr"
  path = "benches/encstr/benches.rs"
  harness = false
