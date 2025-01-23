@@ -1,26 +1,16 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -25,7 +25,8 @@ winres = "0.1"
- bitflags = { version = "2.6", features = ["std"] }
- capstone = "0.12"
- clap = { version = "4.5", features = ["derive"] }
--crossterm = { version = "0.28", features = ["serde"] }
-+# downgrade: raw mod - not a tty
-+crossterm = { version = "0.27", features = ["serde"] }
- dirs = "5.0"
- keystone-engine = "0.1"
- macro_rules_attribute = "0.2"
-@@ -36,7 +37,7 @@ ratatui = { version = "0.29", features =
+@@ -36,7 +36,7 @@ ratatui = { version = "0.29", features =
  regex = "1.11"
- russh = "0.48"
- russh-keys = "0.48"
+ russh = "0.49"
+ russh-keys = "0.49"
 -russh-sftp = "2.0"
 +russh-sftp = "=2.0.6"
  serde = { version = "1.0", features = ["derive"] }
  serde_json = "1.0"
- symbolic-demangle = "12.12"
-@@ -44,5 +45,22 @@ tempfile = "3.13"
- tokio = "1.41"
+ symbolic-demangle = "12.13"
+@@ -44,5 +44,22 @@ tempfile = "3.15"
+ tokio = "1.43"
  termbg = "0.6"
  
 +[dev-dependencies]

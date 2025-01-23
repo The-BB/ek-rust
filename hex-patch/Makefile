@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hex-patch
-PKG_VERSION:=1.9.4
+PKG_VERSION:=1.9.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Etto48/HexPatch/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=5c8f6e122953fad19335630a185265e9a52d46fcfaa71ee7750ce986179c3480
+PKG_HASH:=fcc519d2d01242a4072c1055407b7860e10369b5f4b011bd99984fc67aae88fa
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
