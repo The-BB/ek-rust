@@ -1,6 +1,6 @@
 --- a/helix-term/Cargo.toml
 +++ b/helix-term/Cargo.toml
-@@ -46,7 +46,7 @@ termini = "1"
+@@ -64,7 +64,7 @@ termini = "1"
  
  # Logging
  fern = "0.7"
@@ -11,7 +11,7 @@
  # File picker
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -39,7 +39,7 @@ package.helix-term.opt-level = 2
+@@ -38,7 +38,7 @@ package.helix-term.opt-level = 2
  
  [workspace.dependencies]
  tree-sitter = { version = "0.22" }
@@ -19,8 +19,8 @@
 +nucleo = "=0.5.0"
  slotmap = "1.0.7"
  thiserror = "2.0"
- 
-@@ -52,3 +52,10 @@ repository = "https://github.com/helix-e
+ tempfile = "3.15.0"
+@@ -53,3 +53,10 @@ repository = "https://github.com/helix-e
  homepage = "https://helix-editor.com"
  license = "MPL-2.0"
  rust-version = "1.76"
