@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=static-web-server
-PKG_VERSION:=2.34.0
+PKG_VERSION:=2.35.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/joseluisq/static-web-server/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=f0b6ef64f68445c98f1ffd22265d5675e64157e572431fa4fd362970199d0b5e
+PKG_HASH:=adf260f0aa3ccc18955f9f68ce11356c8d0e3fbb0d9b9446b137430427dafb3b
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438
+PKG_BUILD_DEPENDS += chrono-0439
 
 define Package/static-web-server
   SECTION:=net
