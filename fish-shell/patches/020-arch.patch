@@ -1,0 +1,18 @@
+--- a/src/signal.rs
++++ b/src/signal.rs
+@@ -401,13 +401,13 @@ const SIGNAL_TABLE : &[LookupEntry] = &[
+     #[cfg(any(bsd, target_os = "macos"))]
+     LookupEntry::new(libc::SIGINFO,   L!("SIGINFO"), L!("Information request")),
+ 
+-    #[cfg(target_os = "linux")]
++    #[cfg(all(target_os = "linux", not(target_arch = "mips")))]
+     LookupEntry::new(libc::SIGSTKFLT, L!("SISTKFLT"), L!("Stack fault")),
+ 
+     #[cfg(target_os = "linux")]
+     LookupEntry::new(libc::SIGIOT,   L!("SIGIOT"), L!("Abort (Alias for SIGABRT)")),
+ 
+-    #[cfg(target_os = "linux")]
++    #[cfg(all(target_os = "linux", not(target_arch = "mips")))]
+     #[allow(deprecated)]
+     LookupEntry::new(libc::SIGUNUSED, L!("SIGUNUSED"), L!("Unused signal")),
+ 
