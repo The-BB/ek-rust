@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=spider
-PKG_VERSION:=2.22.8
+PKG_VERSION:=2.26.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/spider-rs/spider/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=492794ef4beaa30a5114d52724d8a814186f3decadf530c21607cb90ff99000c
+PKG_HASH:=edd6ba375aa6243a3c7d1ac39058c85258aac2d13a634fe87e2dab7b7f126bc5
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0438 iana-time-zone-0161
+PKG_BUILD_DEPENDS += chrono-0439
 
 define Package/spider/Default
   SECTION:=net
