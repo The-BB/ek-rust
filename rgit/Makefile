@@ -1,16 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
-
-# mips(el):
-#	error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
-#	error: could not compile `moka` due to previous error
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rgit
 PKG_VERSION:=0.1.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/w4/rgit/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -22,13 +18,15 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
+PKG_BUILD_DEPENDS += getrandom-0215
+
 define Package/rgit
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Version Control Systems
   TITLE:=a gitweb interface written in rust
   URL:=https://github.com/w4/rgit
-  DEPENDS:=@!(mips||mipsel) +libopenssl +libstdcpp +zlib
+  DEPENDS:=+libopenssl +libstdcpp +zlib
 endef
 
 define Package/rgit/description
@@ -36,8 +34,9 @@ define Package/rgit/description
   Written in Rust using Axum, git2, Askama and Sled.
 endef
 
+# arm/mips(el): undefined reference to symbol '__atomic_load_8@@LIBATOMIC_1.0'
 ifneq ($(CONFIG_ARCH_64BIT),y)
-RUSTFLAGS += --cfg crossbeam_no_atomic_64
+RUSTFLAGS += -l dylib=atomic
 endif
 
 define Package/rgit/install
