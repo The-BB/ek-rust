@@ -103,7 +103,7 @@ define Host/Compile
 	( cd $(HOST_BUILD_DIR); \
 		CARGO_HOME="$(STAGING_DIR)/host/share/cargo.dev" \
 		DESTDIR=$(HOST_BUILD_DIR)/install \
-		$(STAGING_DIR_HOST)/bin/python3 x.py install --stage 1; \
+		$(STAGING_DIR_HOST)/bin/python3 x.py install; \
 	)
 endef
 
@@ -187,7 +187,7 @@ define Build/Compile
 		DESTDIR=$(PKG_INSTALL_DIR) \
 		HOST_PKG_CONFIG_PATH="$(HOST_PKG_CONFIG_PATH)" \
 		PKG_CONFIG_ALLOW_CROSS=1 \
-		$(STAGING_DIR_HOST)/bin/python3 x.py install library/std --stage 1; \
+		$(STAGING_DIR_HOST)/bin/python3 x.py install library/std; \
 	)
 endef
 
