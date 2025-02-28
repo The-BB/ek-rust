@@ -1,6 +1,6 @@
 --- a/crates/uv-build-frontend/src/error.rs
 +++ b/crates/uv-build-frontend/src/error.rs
-@@ -38,7 +38,7 @@ static MISSING_HEADER_RE_MSVC: LazyLock<
+@@ -39,7 +39,7 @@ static MISSING_HEADER_RE_MSVC: LazyLock<
  
  /// e.g. `/usr/bin/ld: cannot find -lncurses: No such file or directory`
  static LD_NOT_FOUND_RE: LazyLock<Regex> = LazyLock::new(|| {
@@ -16,13 +16,13 @@
      // See: https://github.com/astral-sh/uv/issues/1810
      // See: https://github.com/astral-sh/uv/issues/4242#issuecomment-2306164449
 -    let attempts = ["/bin/sh", "/usr/bin/env", "/bin/dash", "/bin/ls"];
-+    let attempts = ["/opt/bin/sh", "/bin/sh", "/usr/bin/env", "/bin/dash", "/bin/ls"];
++    let attempts = ["/opt/bin/sh", "/opt/bin/env", "/opt/bin/ls", "/bin/sh", "/usr/bin/env", "/bin/dash", "/bin/ls"];
      for path in attempts {
          if let Some(ld_path) = find_ld_path_at(path) {
              return Ok(ld_path);
 --- a/crates/uv-settings/src/lib.rs
 +++ b/crates/uv-settings/src/lib.rs
-@@ -189,7 +189,7 @@ fn user_config_dir() -> Option<PathBuf>
+@@ -193,7 +193,7 @@ fn user_config_dir() -> Option<PathBuf>
  #[cfg(not(windows))]
  fn locate_system_config_xdg(value: Option<&str>) -> Option<PathBuf> {
      // On Linux and macOS, read the `XDG_CONFIG_DIRS` environment variable.
@@ -31,7 +31,7 @@
      let config_dirs = value.filter(|s| !s.is_empty()).unwrap_or(default);
  
      for dir in config_dirs.split(':').take_while(|s| !s.is_empty()) {
-@@ -231,7 +231,7 @@ fn system_config_file() -> Option<PathBu
+@@ -240,7 +240,7 @@ fn system_config_file() -> Option<PathBu
  
          // Fallback to `/etc/uv/uv.toml` if `XDG_CONFIG_DIRS` is not set or no valid
          // path is found.
