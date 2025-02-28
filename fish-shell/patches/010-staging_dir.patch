@@ -1,6 +1,6 @@
 --- a/build.rs
 +++ b/build.rs
-@@ -51,8 +51,8 @@ fn main() {
+@@ -56,8 +56,8 @@ fn main() {
  
      let mut build = cc::Build::new();
      // Add to the default library search path
