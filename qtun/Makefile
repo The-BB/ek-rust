@@ -47,6 +47,7 @@ Package/qtun-server/description=$(call Package/qtun/description/Default)
 
 # cannot be used when making a shared object; recompile with -fPIC
 RUSTFLAGS += -C relocation-model=pic
+TARGET_CFLAGS += -fPIC
 
 # x86_64: undefined reference to `__stack_chk_guard'
 ifeq ($(CONFIG_x86_64),y)
