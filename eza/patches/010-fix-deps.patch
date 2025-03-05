@@ -5,7 +5,7 @@
  [dependencies]
  rayon = "1.10.0"
 -chrono = { version = "0.4.34", default-features = false, features = ["clock"] }
-+chrono = { version = "=0.4.38", default-features = false, features = ["clock"] }
++chrono = { version = "=0.4.39", default-features = false, features = ["clock"] }
  nu-ansi-term = { version = "0.50.1", features = [
    "serde",
    "derive_serde_style",
@@ -14,17 +14,19 @@
  
  [build-dependencies]
 -chrono = { version = "0.4.34", default-features = false, features = ["clock"] }
-+chrono = { version = "=0.4.38", default-features = false, features = ["clock"] }
++chrono = { version = "=0.4.39", default-features = false, features = ["clock"] }
 +iana-time-zone = "0.1.61"
  
  [dev-dependencies]
  criterion = { version = "0.5.1", features = ["html_reports"] }
-@@ -162,3 +163,8 @@ panic = 'abort'
+@@ -162,3 +163,10 @@ panic = 'abort'
  [[bench]]
  name = "my_benchmark"
  harness = false
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.38" }
++chrono = { path = "../chrono-0.4.39" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
++# getrandom
++getrandom = { path = "../getrandom-0.2.15" }
