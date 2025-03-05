@@ -4,7 +4,7 @@
  void = "1"
  
  [dev-dependencies]
-+chrono = "=0.4.38"
++chrono = "=0.4.40"
  serde_json = "1.0.50"
  toml = "0.8.8"
 --- a/crates/tor-hsservice/Cargo.toml
@@ -13,17 +13,17 @@
  void = "1"
  
  [dev-dependencies]
-+chrono = "=0.4.38"
++chrono = "=0.4.40"
  libc = { version = "0.2", default-features = false }
  rmp-serde = "1"
  serde_json = "1.0.104"
 --- a/crates/tor-linkspec/Cargo.toml
 +++ b/crates/tor-linkspec/Cargo.toml
-@@ -52,6 +52,7 @@ tor-memquota = { version = "0.26.0", pat
- tor-protover = { path = "../tor-protover", version = "0.26.0" }
+@@ -52,6 +52,7 @@ tor-memquota = { version = "0.28.0", pat
+ tor-protover = { path = "../tor-protover", version = "0.28.0" }
  
  [dev-dependencies]
-+chrono = "=0.4.38"
++chrono = "=0.4.40"
  hex-literal = "0.4"
  itertools = "0.14.0"
  serde_test = "1.0.124"
@@ -33,23 +33,23 @@
  
  [dev-dependencies]
  anyhow = "1.0.23"
-+chrono = "=0.4.38"
++chrono = "=0.4.40"
  hex-literal = "0.4"
  itertools = "0.14.0"
  serde_json = "1.0.50"
 --- a/crates/tor-proto/Cargo.toml
 +++ b/crates/tor-proto/Cargo.toml
-@@ -102,6 +102,7 @@ void = "1"
+@@ -109,6 +109,7 @@ void = "1"
  zeroize = "1"
  
  [dev-dependencies]
-+chrono = "=0.4.38"
++chrono = "=0.4.40"
  cpu-time = "1.0.0"
  criterion = "0.5.1"
  hex = "0.4"
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -124,3 +124,14 @@ incremental = true
+@@ -125,3 +125,14 @@ incremental = true
  # Inherits release build settings, but adds full debug symbols.
  debug = 2
  strip = "none"
@@ -60,7 +60,7 @@
 +# mips (big endian)
 +merlin = { path = "../merlin-3.0.0" }
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.38" }
++chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
 +# openssl
-+openssl-probe = { path = "../openssl-probe-0.1.5" }
++openssl-probe = { path = "../openssl-probe-0.1.6" }
