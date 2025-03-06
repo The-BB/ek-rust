@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=spider
-PKG_VERSION:=2.26.3
+PKG_VERSION:=2.31.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/spider-rs/spider/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=edd6ba375aa6243a3c7d1ac39058c85258aac2d13a634fe87e2dab7b7f126bc5
+PKG_HASH:=e9df33f88929c99241ba833dcfad8cb5622e300c6efacae89144beb350aedc7f
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0439
+PKG_BUILD_DEPENDS += chrono-0440
 
 define Package/spider/Default
   SECTION:=net
@@ -51,6 +51,9 @@ define Package/spider-worker/description
   $(call Package/spider/description)
   A spider worker to decentralize the crawl lifting.
 endef
+
+# error: failed to run custom build command for `ring v0.17.11`
+RUSTC_VARS += CFLAGS=''
 
 define Package/spider-cli/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
