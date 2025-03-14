@@ -26,13 +26,17 @@ define Package/rgit
   SUBMENU:=Version Control Systems
   TITLE:=a gitweb interface written in rust
   URL:=https://github.com/w4/rgit
-  DEPENDS:=+libopenssl +libstdcpp +zlib
+  DEPENDS:=+libopenssl +libstdcpp +zlib @!USE_MUSL
 endef
 
 define Package/rgit/description
   A gitweb/cgit-like interface for the modern age.
   Written in Rust using Axum, git2, Askama and Sled.
 endef
+
+# error: failed to run custom build command for `sha1-asm v0.5.3`
+# cargo:warning=src/aarch64.S:*: Error: selected processor does not support
+TARGET_CFLAGS:=$(filter-out -mcpu=%,$(TARGET_CFLAGS))
 
 # arm/mips(el): undefined reference to symbol '__atomic_load_8@@LIBATOMIC_1.0'
 ifneq ($(CONFIG_ARCH_64BIT),y)
