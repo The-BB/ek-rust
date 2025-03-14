@@ -28,5 +28,5 @@
 +# localtime/zoneinfo
 +chrono = { path = "../chrono-0.4.39" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
-+# getrandom
++# all: no SYS_getrandom
 +getrandom = { path = "../getrandom-0.2.15" }
