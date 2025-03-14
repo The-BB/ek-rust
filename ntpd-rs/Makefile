@@ -28,6 +28,7 @@ define Package/ntpd-rs
   SUBMENU:=Time Synchronization
   TITLE:=Full-featured implementation of NTP with NTS support
   URL:=https://github.com/pendulum-project/ntpd-rs
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/ntpd-rs/description
