@@ -81,7 +81,7 @@ cpython-3.11.10-linux-mips-gnu    /opt/bin/python -> python3.11
              Self::Powerpc,
 --- a/crates/uv-python/src/platform.rs
 +++ b/crates/uv-python/src/platform.rs
-@@ -256,6 +256,14 @@ impl From<&uv_platform_tags::Arch> for A
+@@ -280,6 +280,14 @@ impl From<&uv_platform_tags::Arch> for A
                  family: target_lexicon::Architecture::Arm(target_lexicon::ArmArchitecture::Armv7),
                  variant: None,
              },
