@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
+
+# XXX error[E0283]: type annotations needed
 
 include $(TOPDIR)/rules.mk
 
@@ -25,7 +27,7 @@ define Package/cpumap
   SUBMENU:=CPU tools
   TITLE:=view and edit CPU affinities
   URL:=https://codeberg.org/Kiith/cpumap
-  DEPENDS:=@ARCH_64BIT +libhwloc
+  DEPENDS:=@ARCH_64BIT +libhwloc @BROKEN
 endef
 
 define Package/cpumap/description
