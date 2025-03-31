@@ -1,15 +1,6 @@
---- a/library/std/Cargo.toml
-+++ b/library/std/Cargo.toml
-@@ -151,5 +151,5 @@ check-cfg = [
-     # of declared features, we therefor expect any feature cfg
-     'cfg(feature, values(any()))',
-     # #[cfg(bootstrap)] rtems
--    'cfg(target_os, values("rtems"))',
-+    'cfg(target_os, values("rtems", "openwrt"))',
- ]
 --- a/src/bootstrap/src/core/sanity.rs
 +++ b/src/bootstrap/src/core/sanity.rs
-@@ -34,6 +34,16 @@ pub struct Finder {
+@@ -34,6 +34,14 @@ pub struct Finder {
  // Targets can be removed from this list once they are present in the stage0 compiler (usually by updating the beta compiler of the bootstrap).
  const STAGE0_MISSING_TARGETS: &[&str] = &[
      // just a dummy comment so the list doesn't get onelined
@@ -19,13 +10,35 @@
 +    "mipsel-openwrt-linux-gnu",
 +    "x86_64-openwrt-linux-gnu",
 +    "aarch64-openwrt-linux-musl",
-+    "armv7-openwrt-linux-musl",
 +    "mips-openwrt-linux-musl",
 +    "mipsel-openwrt-linux-musl",
-+    "x86_64-openwrt-linux-musl",
-     "armv7-rtems-eabihf",
-     "riscv32e-unknown-none-elf",
-     "riscv32em-unknown-none-elf",
+ ];
+ 
+ /// Minimum version threshold for libstdc++ required when using prebuilt LLVM
+--- a/src/bootstrap/src/utils/cc_detect.rs
++++ b/src/bootstrap/src/utils/cc_detect.rs
+@@ -220,6 +220,21 @@ fn default_compiler(
+             }
+         }
+ 
++        "mips-openwrt-linux-musl" if compiler == Language::C => {
++            if cfg.get_compiler().path().to_str() == Some("gcc") {
++                Some(PathBuf::from("mips-linux-musl-gcc"))
++            } else {
++                None
++            }
++        }
++        "mipsel-openwrt-linux-musl" if compiler == Language::C => {
++            if cfg.get_compiler().path().to_str() == Some("gcc") {
++                Some(PathBuf::from("mipsel-linux-musl-gcc"))
++            } else {
++                None
++            }
++        }
++
+         "mips-unknown-linux-musl" if compiler == Language::C => {
+             if cfg.get_compiler().path().to_str() == Some("gcc") {
+                 Some(PathBuf::from("mips-linux-musl-gcc"))
 --- a/src/llvm-project/clang/lib/Driver/ToolChains/Gnu.cpp
 +++ b/src/llvm-project/clang/lib/Driver/ToolChains/Gnu.cpp
 @@ -2461,15 +2461,17 @@ void Generic_GCC::GCCInstallationDetecto
@@ -114,7 +127,7 @@
    case PC: return "pc";
    case SCEI: return "scei";
    case SUSE: return "suse";
-@@ -637,6 +638,7 @@ static Triple::VendorType parseVendor(St
+@@ -640,6 +641,7 @@ static Triple::VendorType parseVendor(St
      .Case("mesa", Triple::Mesa)
      .Case("suse", Triple::SUSE)
      .Case("oe", Triple::OpenEmbedded)
