@@ -1,10 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
-# mips(el):
-#	error[E0432]: unresolved import `std::sync::atomic::AtomicU64`
-#	error: could not compile `leaf` (lib) due to previous error; 4 warnings emitted
+# XXX error[E0283]: type annotations needed
 
 include $(TOPDIR)/rules.mk
 
@@ -31,6 +29,7 @@ define Package/leaf
   SUBMENU:=Web Servers/Proxies
   TITLE:=A versatile and efficient proxy framework
   URL:=https://github.com/eycorsican/leaf
+  DEPENDS:=@BROKEN
   PROVIDES:=leaf-ring leaf-ssl
 endef
 
