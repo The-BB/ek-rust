@@ -2,13 +2,11 @@
 #
 # Copyright (C) 2024-2025 Entware
 
-# XXX error[E0283]: type annotations needed
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cpumap
 PKG_VERSION:=0.2.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
@@ -27,7 +25,7 @@ define Package/cpumap
   SUBMENU:=CPU tools
   TITLE:=view and edit CPU affinities
   URL:=https://codeberg.org/Kiith/cpumap
-  DEPENDS:=@ARCH_64BIT +libhwloc @BROKEN
+  DEPENDS:=@ARCH_64BIT +libhwloc
 endef
 
 define Package/cpumap/description
