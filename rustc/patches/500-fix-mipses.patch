@@ -13,7 +13,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
 
 --- a/src/tools/clippy/clippy_utils/src/consts.rs
 +++ b/src/tools/clippy/clippy_utils/src/consts.rs
-@@ -41,14 +41,16 @@ pub enum Constant<'tcx> {
+@@ -43,14 +43,16 @@ pub enum Constant<'tcx> {
      Char(char),
      /// An integer's bit representation.
      Int(u128),
@@ -34,7 +34,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
      /// `true` or `false`.
      Bool(bool),
      /// An array of constants.
-@@ -175,7 +177,7 @@ impl Hash for Constant<'_> {
+@@ -177,7 +179,7 @@ impl Hash for Constant<'_> {
              },
              Self::F16(f) => {
                  // FIXME(f16_f128): once conversions to/from `f128` are available on all platforms,
@@ -43,7 +43,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
              },
              Self::F32(f) => {
                  f64::from(f).to_bits().hash(state);
-@@ -184,7 +186,7 @@ impl Hash for Constant<'_> {
+@@ -186,7 +188,7 @@ impl Hash for Constant<'_> {
                  f.to_bits().hash(state);
              },
              Self::F128(f) => {
@@ -52,7 +52,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
              },
              Self::Bool(b) => {
                  b.hash(state);
-@@ -290,12 +292,12 @@ impl Constant<'_> {
+@@ -292,12 +294,12 @@ impl Constant<'_> {
  
      fn parse_f16(s: &str) -> Self {
          let f: Half = s.parse().unwrap();
@@ -67,7 +67,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
      }
  }
  
-@@ -851,10 +853,10 @@ pub fn mir_to_const<'tcx>(tcx: TyCtxt<'t
+@@ -871,10 +873,10 @@ pub fn mir_to_const<'tcx>(tcx: TyCtxt<'t
              ty::Adt(adt_def, _) if adt_def.is_struct() => Some(Constant::Adt(result)),
              ty::Bool => Some(Constant::Bool(int == ScalarInt::TRUE)),
              ty::Uint(_) | ty::Int(_) => Some(Constant::Int(int.to_bits(int.size()))),
@@ -80,7 +80,7 @@ Subject: [PATCH] Don't use `f16` and `f128` directly in `clippy_utils`
              ty::RawPtr(_, _) => Some(Constant::RawPtr(int.to_bits(int.size()))),
              _ => None,
          },
-@@ -875,10 +877,10 @@ pub fn mir_to_const<'tcx>(tcx: TyCtxt<'t
+@@ -895,10 +897,10 @@ pub fn mir_to_const<'tcx>(tcx: TyCtxt<'t
                  let range = alloc_range(offset + size * idx, size);
                  let val = alloc.read_scalar(&tcx, range, /* read_provenance */ false).ok()?;
                  res.push(match flt {

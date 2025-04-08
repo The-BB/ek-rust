@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rustc
-PKG_VERSION:=1.85.1
+PKG_VERSION:=1.86.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://static.rust-lang.org/dist
-PKG_HASH:=0f2995ca083598757a8d9a293939e569b035799e070f419a686b0996fb94238a
+PKG_HASH:=022a27286df67900a044d227d9db69d4732ec3d833e4ffc259c4425ed71eed80
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
@@ -52,7 +52,7 @@ endif
 
 define Build/Configure
 	( \
-		echo 'change-id = 138521'; \
+		echo 'change-id = 139182'; \
 		echo '[llvm]'; \
 		echo 'download-ci-llvm = false'; \
 		echo 'allow-old-toolchain = true'; \
