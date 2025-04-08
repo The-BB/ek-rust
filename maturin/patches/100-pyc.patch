@@ -1,6 +1,6 @@
 --- a/src/cross_compile.rs
 +++ b/src/cross_compile.rs
-@@ -152,6 +152,7 @@ fn search_lib_dir(path: impl AsRef<Path>
+@@ -153,6 +153,7 @@ fn search_lib_dir(path: impl AsRef<Path>
      for f in fs::read_dir(path.as_ref())? {
          let sysc = match &f {
              Ok(f) if starts_with(f, "_sysconfigdata") && ends_with(f, "py") => vec![f.path()],
