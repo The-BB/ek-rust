@@ -5,7 +5,7 @@
  sysinfo = "0.27"
  ctrlc = "3.4"
 -chrono = "0.4"
-+chrono = "=0.4.39"
++chrono = "=0.4.40"
  
  [target.'cfg(not(target_has_atomic = "64"))'.dependencies]
  portable-atomic = "1.4"
@@ -16,5 +16,5 @@
 +
 +[patch.crates-io]
 +# localtime/zoneinfo
-+chrono = { path = "../chrono-0.4.39" }
++chrono = { path = "../chrono-0.4.40" }
 +iana-time-zone = { path = "../iana-time-zone-0.1.61" }
