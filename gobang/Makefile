@@ -42,9 +42,6 @@ define Package/gobang/conffiles
 /opt/etc/gobang/config.toml
 endef
 
-# libsqlite3-sys
-RUSTC_VARS += CFLAGS=''
-
 ifneq ($(CONFIG_ARCH_64BIT),y)
 RUSTFLAGS += --cfg crossbeam_no_atomic_64
 endif
