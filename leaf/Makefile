@@ -2,8 +2,6 @@
 #
 # Copyright (C) 2024-2025 Entware
 
-# XXX error[E0283]: type annotations needed
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=leaf
@@ -29,7 +27,6 @@ define Package/leaf
   SUBMENU:=Web Servers/Proxies
   TITLE:=A versatile and efficient proxy framework
   URL:=https://github.com/eycorsican/leaf
-  DEPENDS:=@BROKEN
   PROVIDES:=leaf-ring leaf-ssl
 endef
 
