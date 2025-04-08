@@ -1,6 +1,6 @@
 --- a/compiler/rustc_target/src/spec/base/mod.rs
 +++ b/compiler/rustc_target/src/spec/base/mod.rs
-@@ -21,6 +21,9 @@ pub(crate) mod msvc;
+@@ -22,6 +22,9 @@ pub(crate) mod msvc;
  pub(crate) mod netbsd;
  pub(crate) mod nto_qnx;
  pub(crate) mod openbsd;
@@ -218,22 +218,35 @@
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/i586_openwrt_linux_gnu.rs
-@@ -0,0 +1,8 @@
+@@ -0,0 +1,9 @@
 +use crate::spec::Target;
 +
 +pub(crate) fn target() -> Target {
 +    let mut base = super::i686_openwrt_linux_gnu::target();
++    base.rustc_abi = None; // overwrite the SSE2 ABI set by the base target
 +    base.cpu = "pentium".into();
 +    base.llvm_target = "i586-openwrt-linux-gnu".into();
 +    base
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/i686_openwrt_linux_gnu.rs
-@@ -0,0 +1,26 @@
-+use crate::spec::{Cc, LinkerFlavor, Lld, SanitizerSet, StackProbeType, Target, base};
+@@ -0,0 +1,38 @@
++use crate::spec::{Cc, LinkerFlavor, Lld, RustcAbi, SanitizerSet, StackProbeType, Target, base};
 +
 +pub(crate) fn target() -> Target {
 +    let mut base = base::openwrt_linux_gnu::opts();
++    base.rustc_abi = Some(RustcAbi::X86Sse2);
++    // Dear distribution packager, if you are changing the base CPU model with the goal of removing
++    // the SSE2 requirement, make sure to also set the `rustc_abi` to `None` above or else the compiler
++    // will complain that the chosen ABI cannot be realized with the given CPU features.
++    // Also note that x86 without SSE2 is *not* considered a Tier 1 target by the Rust project, and
++    // it has some known floating-point correctness issues mostly caused by a lack of people caring
++    // for LLVM's x87 support (double-rounding, value truncation; see
++    // <https://github.com/rust-lang/rust/issues/114479> for details). This can lead to incorrect
++    // math (Rust generally promises exact math, so this can break code in unexpected ways) and it
++    // can lead to memory safety violations if floating-point values are used e.g. to access an
++    // array. If users run into such issues and report bugs upstream and then it turns out that the
++    // bugs are caused by distribution patches, that leads to confusion and frustration.
 +    base.cpu = "pentium4".into();
 +    base.max_atomic_width = Some(64);
 +    base.supported_sanitizers = SanitizerSet::ADDRESS;
@@ -258,8 +271,9 @@
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/mips_openwrt_linux_gnu.rs
-@@ -0,0 +1,26 @@
-+use crate::abi::Endian;
+@@ -0,0 +1,27 @@
++use rustc_abi::Endian;
++
 +use crate::spec::{Target, TargetOptions, base};
 +
 +pub(crate) fn target() -> Target {
@@ -287,8 +301,9 @@
 +}
 --- /dev/null
 +++ b/compiler/rustc_target/src/spec/targets/mips_openwrt_linux_musl.rs
-@@ -0,0 +1,22 @@
-+use crate::abi::Endian;
+@@ -0,0 +1,23 @@
++use rustc_abi::Endian;
++
 +use crate::spec::{Target, TargetOptions, base};
 +
 +pub(crate) fn target() -> Target {
@@ -409,7 +424,7 @@
 +}
 --- a/compiler/rustc_target/src/spec/mod.rs
 +++ b/compiler/rustc_target/src/spec/mod.rs
-@@ -1649,6 +1649,21 @@ macro_rules! supported_targets {
+@@ -1672,6 +1672,21 @@ macro_rules! supported_targets {
  }
  
  supported_targets! {
@@ -454,9 +469,9 @@
      "aarch64-apple-darwin",
      "aarch64-apple-ios",
      "aarch64-apple-ios-macabi",
---- a/vendor/target-lexicon-0.12.16/src/targets.rs
-+++ b/vendor/target-lexicon-0.12.16/src/targets.rs
-@@ -583,6 +583,7 @@ pub enum Vendor {
+--- a/vendor/target-lexicon-0.13.1/src/targets.rs
++++ b/vendor/target-lexicon-0.13.1/src/targets.rs
+@@ -585,6 +585,7 @@ pub enum Vendor {
      Kmc,
      Nintendo,
      Nvidia,
@@ -464,7 +479,7 @@
      Pc,
      Rumprun,
      Sun,
-@@ -615,6 +616,7 @@ impl Vendor {
+@@ -617,6 +618,7 @@ impl Vendor {
              Kmc => "kmc",
              Nintendo => "nintendo",
              Nvidia => "nvidia",
@@ -472,7 +487,7 @@
              Pc => "pc",
              Rumprun => "rumprun",
              Sun => "sun",
-@@ -1319,6 +1321,7 @@ impl FromStr for Vendor {
+@@ -1386,6 +1388,7 @@ impl FromStr for Vendor {
              "kmc" => Kmc,
              "nintendo" => Nintendo,
              "nvidia" => Nvidia,
@@ -480,7 +495,7 @@
              "pc" => Pc,
              "rumprun" => Rumprun,
              "sun" => Sun,
-@@ -1552,6 +1555,20 @@ mod tests {
+@@ -1662,6 +1665,20 @@ mod tests {
          //  - targets emitted by "rustc +nightly --print target-list"
          //  - targets contributors have added
          let targets = [
