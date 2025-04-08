@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wstunnel
-PKG_VERSION:=10.1.9
+PKG_VERSION:=10.1.10
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/erebe/wstunnel/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=b14e2c96d80753d2031d66d3766c3c91b27f38bcf41842419f6924921dee1d92
+PKG_HASH:=803bbc3274617ec67a141ae41488054d7edb103da8570a58b0134a5c68645ffe
 
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += aws-lc-sys-0212 bb8-090 chrono-0440
+PKG_BUILD_DEPENDS += bb8-090 chrono-0440
 
 define Package/wstunnel
   SECTION:=net
