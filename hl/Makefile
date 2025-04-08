@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hl
-PKG_VERSION:=0.30.4
+PKG_VERSION:=0.31.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/pamburus/hl/tar.gz/refs/tags/v$(PKG_VERSION)?
-PKG_HASH:=b32769af62391a55e04f0074ab36662307deecabca3df8e5fab70ec84b3bb367
+PKG_HASH:=929e47639e448b2bdbaac75406e44db183f2d9a34e9882ccd7bc87119cc0db6b
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -19,7 +19,7 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440
+PKG_BUILD_DEPENDS += chrono-0440 iana-time-zone-0162
 
 define Package/hl
   SECTION:=utils
