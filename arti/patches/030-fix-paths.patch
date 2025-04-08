@@ -33,7 +33,7 @@
              dflt(Literal(
 --- a/crates/tor-rpc-connect/src/lib.rs
 +++ b/crates/tor-rpc-connect/src/lib.rs
-@@ -243,7 +243,7 @@ pub const SYSTEM_DEFAULT_CONNECT_POINT:
+@@ -239,7 +239,7 @@ pub const SYSTEM_DEFAULT_CONNECT_POINT:
              Some(
  r#"
  [connect]

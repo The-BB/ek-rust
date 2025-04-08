@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=arti
-PKG_VERSION:=1.4.1
+PKG_VERSION:=1.4.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_NAME)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://gitlab.torproject.org/tpo/core/arti/-/archive/$(PKG_NAME)-v$(PKG_VERSION)
-PKG_HASH:=d69e66a02b412cfdb52a70f6080ca4dfe1f0d16267da8946c9aa75ca4a77e291
+PKG_HASH:=551bccd10186988d20a94f0a96eac10d7e36512608543170361b79d27e69eaa9
 
 PKG_LICENSE:=Apache-2.0 MIT
 PKG_LICENSE_FILES:=GPL-3 LGPL-3 LICENSE-APACHE LICENSE-MIT
@@ -22,7 +22,8 @@ PKG_MAINTAINER:=Entware team, https://entware.net
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += chrono-0440 coarsetime-0135 merlin-300 openssl-probe-016
+PKG_BUILD_DEPENDS += chrono-0440 coarsetime-0136 iana-time-zone-0162 \
+		merlin-300 openssl-probe-016
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/arti/Default
@@ -133,6 +134,9 @@ endef
 #endef
 
 #CARGO_ARGS += $(if $(CONFIG_ARTI_EXPERIMENTAL),--features 'experimental')
+
+# cannot be used when making a shared object; recompile with -fPIC
+RUSTFLAGS += -C relocation-model=pic
 
 define Package/arti/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
