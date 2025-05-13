@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
 PKG_BUILD_DEPENDS += chrono-0440 coarsetime-0136 iana-time-zone-0162 \
-		merlin-300 openssl-probe-016
+		merlin-300 openssl-probe-016 rust-bindgen/host
 PKG_UNPACK += --strip-components=1 -C $(PKG_BUILD_DIR)
 
 define Package/arti/Default
@@ -35,7 +35,7 @@ endef
 define Package/arti
   $(call Package/arti/Default)
   TITLE:=A rust implementation of the Tor privacy tools
-  DEPENDS+=+liblzma +libopenssl +libsqlite3
+  DEPENDS:=+liblzma +libopenssl +libsqlite3
 endef
 
 define Package/arti/description
@@ -137,6 +137,10 @@ endef
 
 # cannot be used when making a shared object; recompile with -fPIC
 RUSTFLAGS += -C relocation-model=pic
+
+ifeq ($(CONFIG_USE_MUSL),y)
+  TARGET_CFLAGS += -Wno-error=format-nonliteral
+endif
 
 define Package/arti/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
