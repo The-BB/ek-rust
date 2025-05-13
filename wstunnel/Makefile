@@ -18,7 +18,7 @@ PKG_LICENSE_FILES:=LICENSE
 include $(INCLUDE_DIR)/package.mk
 include ../rustc-dev/cargo.mk
 
-PKG_BUILD_DEPENDS += bb8-090 chrono-0440
+PKG_BUILD_DEPENDS += bb8-090 chrono-0440 rust-bindgen/host
 
 define Package/wstunnel
   SECTION:=net
@@ -33,6 +33,10 @@ define Package/wstunnel/description
 endef
 
 CARGO_SOURCE_SUBDIR:=wstunnel-cli
+
+ifeq ($(CONFIG_USE_MUSL),y)
+  TARGET_CFLAGS += -Wno-error=format-nonliteral
+endif
 
 define Package/wstunnel/install
 	$(INSTALL_DIR) $(1)/opt/usr/bin
