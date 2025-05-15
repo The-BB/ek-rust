@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rgit
 PKG_VERSION:=0.1.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/w4/rgit/tar.gz/refs/tags/$(PKG_VERSION)?
@@ -26,7 +26,7 @@ define Package/rgit
   SUBMENU:=Version Control Systems
   TITLE:=a gitweb interface written in rust
   URL:=https://github.com/w4/rgit
-  DEPENDS:=+libopenssl +libstdcpp +zlib @!USE_MUSL
+  DEPENDS:=+libopenssl +libstdcpp +zlib
 endef
 
 define Package/rgit/description
