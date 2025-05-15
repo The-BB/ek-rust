@@ -1,16 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
-
-# aarch64/arm:
-#	error[E0308]: mismatched types
-#	error: could not compile `sys_metrics` (lib) due to previous error
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ztui
 PKG_VERSION:=0.1.7
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/erikh/ztui/tar.gz/refs/tags/v$(PKG_VERSION)?
@@ -30,7 +26,7 @@ define Package/ztui
   SUBMENU:=VPN
   TITLE:=A terminal UI for ZeroTier
   URL:=https://github.com/erikh/ztui
-  DEPENDS:=+libopenssl @!USE_MUSL
+  DEPENDS:=+libopenssl
   EXTRA_DEPENDS:=zerotier
 endef
 

@@ -9,11 +9,14 @@
  tokio = { version = "^1.28.0", features = [ "full" ] }
  crossterm = "^0.26.0"
  tui = "^0.19.0"
-@@ -32,3 +32,15 @@ nix = "0.24"
+@@ -32,3 +32,18 @@ nix = "0.24"
  signal = "^0.7.0"
  openssl = { version = "^0.10.0", features = [ "vendored" ] }
  tempfile = "^3.5.0"
 +
++[dev-dependencies]
++# musl
++libc = "=0.2.172"
 +# localtime/zoneinfo
 +chrono = "0.4.31"
 +# error[E0635]: unknown feature `proc_macro_span_shrink`
