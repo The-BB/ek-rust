@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# Copyright (C) 2024 Entware
+# Copyright (C) 2024-2025 Entware
 
 include $(TOPDIR)/rules.mk
 
@@ -24,7 +24,6 @@ define Package/dexios
   SUBMENU:=Encryption
   TITLE:=A secure file encryption utility
   URL:=https://github.com/brxken128/dexios
-  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/dexios/description
